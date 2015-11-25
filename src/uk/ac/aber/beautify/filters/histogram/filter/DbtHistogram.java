@@ -47,9 +47,9 @@ public class DbtHistogram extends Filter {
 				outputImage.setRGB(u, v, ((rgbVals[0] & 0xff) << 16) | ((rgbVals[1] & 0xff) << 8) | (rgbVals[2] & 0xff));
 			}
 		}		
-		ShowHistogram aa = new ShowHistogram(r.getArray());
-		ShowHistogram ab = new ShowHistogram(g.getArray());
-		ShowHistogram ac = new ShowHistogram(b.getArray());
+		ShowHistogram redChannelHistogram = new ShowHistogram(r.getArray(), "Red Channel");
+		ShowHistogram greenChannelHistogram = new ShowHistogram(g.getArray(), "Green Channel");
+		ShowHistogram blueChannelHistogram = new ShowHistogram(b.getArray(), "Blue Channel");
 		return outputImage;		// Spit back our enhanced image!
 	}	
 }

@@ -15,14 +15,14 @@ public class ShowHistogram extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ShowHistogram(int[] histogramData) {
+	public ShowHistogram(int[] histogramData, String channel) {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (int i = 0; i < histogramData.length; i++) {
 			dataset.setValue(histogramData[i], "RGBVal", "" + i);
 		}
-		JFreeChart chart = ChartFactory.createBarChart("Histogram", "Values",
-				"Range", dataset, PlotOrientation.VERTICAL, false, true, false);
-		ChartPanel cp = new ChartPanel(chart) {
+		JFreeChart chart = ChartFactory.createBarChart(channel, "Values",
+                "Range", dataset, PlotOrientation.VERTICAL, false, true, false);
+        ChartPanel cp = new ChartPanel(chart) {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(320, 240);
