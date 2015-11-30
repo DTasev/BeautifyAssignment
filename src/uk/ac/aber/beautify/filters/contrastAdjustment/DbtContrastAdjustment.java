@@ -15,7 +15,7 @@ public class DbtContrastAdjustment extends Filter {
     // create cumulative histogram, from histogram
     // q = qhigh = qlow = 0.1
     // p(low) = m*n*q(low)
-    // p(high) = m*q*1-q(high)
+    // p(high) = m*q*(1-q(high))
     // if p <= p(low) set to p(min)
     // else if p > p(low) && p < p(high) set to p(min) + (p-p(low)*(p(max)-p(min)/p(high)-p(low))
     // else if p >= p(high) set to p(max)

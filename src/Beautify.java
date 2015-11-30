@@ -17,6 +17,7 @@ import uk.ac.aber.beautify.filters.contrastAdjustment.DbtContrastAdjSelect;
 import uk.ac.aber.beautify.filters.grayscale.DbtGrayscaleFilterSelect;
 import uk.ac.aber.beautify.filters.histogram.filter.DbtCumulativeSelect;
 import uk.ac.aber.beautify.filters.histogram.filter.DbtHistogramSelect;
+import uk.ac.aber.beautify.filters.histogramEqualisation.DbtHistEqSelect;
 import uk.ac.aber.beautify.filters.invert.DbtInvertFilterSelect;
 import uk.ac.aber.beautify.gui.*;
 
@@ -32,7 +33,7 @@ public class Beautify {
 
         String input = new String();
 
-        beautify.setFilterSet(new DbtContrastAdjSelect());
+        beautify.setFilterSet(new DbtHistEqSelect());
         while (input != "x") {
             System.out.println("Pick a filter:\n"
                     + "ibr -> Increase Brightness\n"

@@ -1,9 +1,10 @@
-package uk.ac.aber.beautify.filters.contrastAdjustment;
+package uk.ac.aber.beautify.filters.histogramEqualisation;
 
 import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
 import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
+import uk.ac.aber.beautify.filters.histogram.equalisation.EqualisedHistogram;
 import uk.ac.aber.beautify.filters.histogram.filter.DbtCumulative;
 
 import java.awt.image.BufferedImage;
@@ -11,29 +12,14 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Dimitar on 26/11/2015.
  */
+@SuppressWarnings("ALL")
 public class DbtHistogramEqualisation extends Filter {
-    // create cumulative histogram, from histogram
-    // q = qhigh = qlow = 0.1
-    // p(low) = m*n*q(low)
-    // p(high) = m*q*1-q(high)
-    // if p <= p(low) set to p(min)
-    // else if p > p(low) && p < p(high) set to p(min) + (p-p(low)*(p(max)-p(min)/p(high)-p(low))
-    // else if p >= p(high) set to p(max)
-    // remap pixels
-    /*
-    do histogram/cumulative histogram on channel that will be changed
-    convert to hsv
-    auto contrast on saturation *might work*
-        OR
-    auto contrast on value
-
-     */
-    public static final int R = 0;
+   public static final int R = 0;
     public static final int G = 1;
     public static final int B = 2;
 
     public DbtHistogramEqualisation() {
-        this.setName("Contrast Adjustment Filter");
+        this.setName("Histogram Equalisation Filter");
     }
 
     public BufferedImage filter(BufferedImage img) {
@@ -53,61 +39,32 @@ public class DbtHistogramEqualisation extends Filter {
             }
         }
 
-        CumulativeHistogram cmR = new CumulativeHistogram(r);
-        CumulativeHistogram cmG = new CumulativeHistogram(g);
-        CumulativeHistogram cmB = new CumulativeHistogram(b);
+        // show normal histograms
+        new ShowHistogram(r.getArray(), "Red Channel");
+        new ShowHistogram(g.getArray(), "Green Channel");
+        new ShowHistogram(b.getArray(), "BlueChannel");
+        // H EQ red
+        EqualisedHistogram eqR = new EqualisedHistogram(r, img.getHeight()*img.getWidth());
+        // H EQ green
+        //EqualisedHistogram eqG = new EqualisedHistogram(g, img.getHeight()*img.getWidth());
+        // H EQ blue
+        //EqualisedHistogram eqB = new EqualisedHistogram(b, img.getHeight()*img.getWidth());
+        // Show histograms
+        new ShowHistogram(eqR.getArray(), "Equalised Red");
+        //new ShowHistogram(eqG.getArray(), "Equalised Green");
+        //new ShowHistogram(eqB.getArray(), "Equalised Blue");
 
-        // set q(LOW) and q(HIGH) ranges
-        float qlow = 0.05f;
-        float qhigh = 0.05f;
-
-        // containers for p(LOW) and p(HIGH) for each channel
-        int[] plow = new int[3];
-        int[] phigh = new int[3];
-
-        // this is the calculation used to find p(LOW)
-        int mlow = (int) (img.getHeight() * img.getWidth() * qlow);
-        // this is the calculation used to find p(HIGH)
-        int mhigh = (int) (img.getHeight() * img.getWidth() * (1 - qhigh));
-
-        // Get the red channel cumulative histogram
-        int[] rch = cmR.getArray();
-        // Find p(LOW) and p(HIGH) for Red channel
-        plow[R] = getP(rch, mlow, true);
-        phigh[R] = getP(rch, mhigh, false);
-
-        // Get the green channel cumulative histogram
-        int[] gch = cmG.getArray();
-        // Find p(LOW) and p(HIGH) for Green channel
-        plow[G] = getP(gch, mlow, true);
-        phigh[G] = getP(gch, mhigh, false);
-
-        // Get the blue channel cumulative histogram
-        int[] bch = cmB.getArray();
-        // Find p(LOW) and p(HIGH) for Blue channel
-        plow[B] = getP(bch, mlow, true);
-        phigh[B] = getP(bch, mhigh, false);
-
-        // p(MIN) and p(HIGH) for RGB are 0 and 255 respectively
-        int pmin = 0;
-        int pmax = 255;
 
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
                 int[] rgbValues = grabRGBValues(img, u, v);
-                // red pixel
-                for (int i = 0; i < 3; i++) {
-                    if (rgbValues[i] <= plow[i]) {
-                        // if lower than p(LOW) for the channel, set to p(MIN)
-                        rgbValues[i] = pmin;
-                    } else if (rgbValues[i] >= phigh[i]) {
-                        // if higher than p(HIGH) for the channel, set to p(HIGH)
-                        rgbValues[i] = pmax;
-                    } else {
-                        // else http://i.imgur.com/Ja14kzW.png / http://i.imgur.com/uoEvldp.png
-                        rgbValues[i] = pmin + ((rgbValues[i] - plow[i]) * (pmax - pmin) / (phigh[i] - plow[i]));
-                    }
-                }
+                // Get red from equalised histogram
+                rgbValues[R] = eqR.getIndex(rgbValues[R]);
+                // Get green from equalised histogram
+                //rgbValues[G] = eqG.getIndex(rgbValues[G]);
+                // Get blue from equalised histogram
+                //rgbValues[B] = eqB.getIndex(rgbValues[B]);
+
                 outputImage.setRGB(u, v, ((rgbValues[0] & 0xff) << 16) | ((rgbValues[1] & 0xff) << 8) | (rgbValues[2] & 0xff));
             }
         }
