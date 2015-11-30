@@ -12,9 +12,10 @@
 import java.util.Scanner;
 
 import uk.ac.aber.beautify.core.BeautifyKernel;
-import uk.ac.aber.beautify.filters.DbtEnchancementFilterSelect;
 import uk.ac.aber.beautify.filters.brightness.DbtBrightnessFilterSelect;
+import uk.ac.aber.beautify.filters.contrastAdjustment.DbtContrastAdjSelect;
 import uk.ac.aber.beautify.filters.grayscale.DbtGrayscaleFilterSelect;
+import uk.ac.aber.beautify.filters.histogram.filter.DbtCumulativeSelect;
 import uk.ac.aber.beautify.filters.histogram.filter.DbtHistogramSelect;
 import uk.ac.aber.beautify.filters.invert.DbtInvertFilterSelect;
 import uk.ac.aber.beautify.gui.*;
@@ -31,14 +32,17 @@ public class Beautify {
 
         String input = new String();
 
-        beautify.setFilterSet(new DbtHistogramSelect());
+        beautify.setFilterSet(new DbtContrastAdjSelect());
         while (input != "x") {
             System.out.println("Pick a filter:\n"
                     + "ibr -> Increase Brightness\n"
                     + "inv -> Invert colours\n"
                     + "gray -> Grayscale\n"
-                    + "hist -> histogram");
+                    + "hist -> histogram\n"
+                    + "cumu -> cumulative histogram\n"
+                    + "contr -> contrast adjustment\n");
             input = in.next() + in.nextLine();
+            input = input.toLowerCase();
             switch (input) {
                 case "ibr":
                     beautify.setFilterSet(new DbtBrightnessFilterSelect());
@@ -55,6 +59,14 @@ public class Beautify {
                 case "hist":
                     System.out.println("Creating histogram");
                     beautify.setFilterSet(new DbtHistogramSelect());
+                    break;
+                case "cumu":
+                    System.out.println("Creating Cumulative Histogram");
+                    beautify.setFilterSet((new DbtCumulativeSelect()));
+                    break;
+                case "contr":
+                    System.out.println("Contrast Adjustment Filter Selected");
+                    beautify.setFilterSet((new DbtContrastAdjSelect()));
                     break;
                 default:
                     System.out.println("Creating histogram");

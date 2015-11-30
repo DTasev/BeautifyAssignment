@@ -1,16 +1,17 @@
-package uk.ac.aber.beautify.filters;
+package uk.ac.aber.beautify.filters.enhancement;
 
 import java.awt.image.BufferedImage;
 
+import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.utils.BeautifyUtils;
 
-public class DbtEnchancementFilter extends Filter {
+public class DbtEnhancementFilter extends Filter {
 
 	/**
 	 * Need to provide a name for this filter so that it appears in the GUI!
 	 * 
 	 */
-	public DbtEnchancementFilter() {
+	public DbtEnhancementFilter() {
 		this.setName("Enchance Filter");
 	}
 	

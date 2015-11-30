@@ -1,21 +1,50 @@
 package uk.ac.aber.beautify.filters.histogram;
 
 public class Histogram {
+	public static final int RGB = 1;
+	public static final int HSV = 2;
+	public static final int XYZ = 3;
+	public static final int LAB = 4;
+
 	private int minRange;
 	private int maxRange;
 	private int step;
 	private int[] array;
 
+	public Histogram(int type, int step){
+
+		switch(type){
+			case RGB:
+				// min 0, max 255, ints
+				this.minRange = 0;
+				this.maxRange = 255;
+				this.step = step;
+				createArray(step);
+				break;
+			case HSV:
+				// min 0, max 1, doubles
+				System.err.println("Doesn't exist yet");
+				break;
+			case XYZ:
+				this.minRange = 0;
+				this.maxRange = 100;
+				this.step = step;
+				createArray(step);
+				break;
+			case LAB:
+				//min -128, max 128, doubles
+				this.minRange = -128;
+				this.maxRange = 128;
+				this.step = step;
+				createArray(step);
+				break;
+		}
+	}
 	public Histogram(int minRange, int maxRange, int step) {
 		this.minRange = minRange;
 		this.maxRange = maxRange;
 		this.step = step;
-		int arraySize = (int) Math.ceil(((maxRange + 1) / step));
-		// maxRange +1 to account for start value; 
-		//+1 at the end to round up
-		//System.out.println(toString() + " current array size: " + arraySize);
-		this.array = new int[arraySize];
-		populateArray();
+		createArray(step);
 		/*
 		 * array = populate with steps -> if == array[i] -> holder[i] ++;
 		 */
@@ -27,42 +56,38 @@ public class Histogram {
 		 */
 	}
 
-	private void populateArray() {
-		int currentVal = minRange;
-		for (int i = 0; i < array.length; i++) {
-			array[i] = currentVal;
-		}
-		
-	}
-
 	public void addValue(int value) {
 		array[value]++;
 	}
 
-	public int getMinRange() {
+	public double getMinRange() {
 		return minRange;
 	}
 
-	public void setMinRange(int minRange) {
-		this.minRange = minRange;
-	}
-
-	public int getMaxRange() {
+	public double getMaxRange() {
 		return maxRange;
 	}
 
-	public void setMaxRange(int maxRange) {
-		this.maxRange = maxRange;
-	}
-
-	public int getSteps() {
+	public double getSteps() {
 		return step;
 	}
 
+	/**
+	 * @WARNING: Will delete any data currently in the array
+	 * A new array will be created.
+	 * @param steps
+     */
 	public void setSteps(int steps) {
 		this.step = steps;
 	}
-
+	private void createArray(int step){
+		this.step = step;
+		int arraySize = (int) Math.ceil(((maxRange + 1) / step));
+		// maxRange +1 to account for start value;
+		// +1 at the end to round up
+		// System.out.println("DEBUG: " + toString() + " current array size: " + arraySize);
+		this.array = new int[arraySize];
+	}
 	public int[] getArray() {
 		return array;
 	}

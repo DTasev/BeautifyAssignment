@@ -3,6 +3,8 @@
   <component name="EclipseModuleManager">
     <libelement value="jar://M:/Workspace/jfreechart-1.0.15/lib/jcommon-1.0.18.jar!/" />
     <libelement value="jar://M:/Workspace/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar!/" />
+    <libelement value="file://M:/Workspace/jfreechart-1.0.15/lib/jcommon-1.0.18.jar" />
+    <libelement value="file://M:/Workspace/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
@@ -18,7 +20,7 @@
     <orderEntry type="module-library">
       <library name="jcommon-1.0.18.jar">
         <CLASSES>
-          <root url="jar://M:/Workspace/jfreechart-1.0.15/lib/jcommon-1.0.18.jar!/" />
+          <root url="file://M:/Workspace/jfreechart-1.0.15/lib/jcommon-1.0.18.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -27,7 +29,7 @@
     <orderEntry type="module-library">
       <library name="jfreechart-1.0.15.jar">
         <CLASSES>
-          <root url="jar://M:/Workspace/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar!/" />
+          <root url="file://M:/Workspace/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
