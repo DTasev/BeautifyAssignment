@@ -1,10 +1,8 @@
 package uk.ac.aber.beautify.filters.contrastAdjustment;
 
 import uk.ac.aber.beautify.filters.Filter;
-import uk.ac.aber.beautify.filters.histogram.Histogram;
-import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
+import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
-import uk.ac.aber.beautify.filters.histogram.filter.DbtCumulative;
 
 import java.awt.image.BufferedImage;
 
@@ -39,9 +37,9 @@ public class DbtContrastAdjustment extends Filter {
     public BufferedImage filter(BufferedImage img) {
         BufferedImage outputImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 
-        Histogram r = new Histogram(0, 255, 1);
-        Histogram g = new Histogram(0, 255, 1);
-        Histogram b = new Histogram(0, 255, 1);
+        NormalHistogram r = new NormalHistogram(0, 255, 1);
+        NormalHistogram g = new NormalHistogram(0, 255, 1);
+        NormalHistogram b = new NormalHistogram(0, 255, 1);
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
                 // Grab the converted HSV Values

@@ -32,7 +32,7 @@ public abstract class BeautifyUtils {
 		for (int i = 0; i < values.length; i++) {
 			values[i] = Math.min(Math.max(0, values[i]), 1);
 		}
-		
+
 		return values;
 	}
     public static double[] clampLAB(double[] values){
@@ -41,6 +41,47 @@ public abstract class BeautifyUtils {
     	}
     	return values;
     }
+
+	public static double[] RGBtoHSVDouble(int[] rgb){
+		int H = 0, S = 1, V = 2;
+
+		double r = rgb[0] / 255.0;
+		double g = rgb[1] / 255.0;
+		double b = rgb[2] / 255.0;
+
+		//double H = 0, S = 0, V = 0;
+		double[] hsv = new double[3];
+
+		double minRGB = Math.min(r, Math.min(g, b));
+		double maxRGB = Math.max(r, Math.max(g, b));
+
+		double deltaMAX = maxRGB-minRGB;
+
+		hsv[V] = maxRGB;
+
+		if(deltaMAX == 0){ // this is gray
+			hsv[H] = hsv[S] = 0.0;
+		}else{
+			hsv[S] = deltaMAX / maxRGB;
+
+			double deltaR = (((maxRGB - r) / 6.0) + (deltaMAX /2.0)) / deltaMAX;
+			double deltaG = (((maxRGB - g) / 6.0) + (deltaMAX /2.0)) / deltaMAX;
+			double deltaB = (((maxRGB - b) / 6.0) + (deltaMAX /2.0)) / deltaMAX;
+
+			if(r == maxRGB)
+				hsv[H] = deltaB - deltaG;
+			else if(g == maxRGB)
+				hsv[H] = (1.0 / 3.0) + deltaR - deltaB;
+			else if(b == maxRGB)
+				hsv[H] = (2.0 / 3.0) + deltaG - deltaR;
+
+			if(hsv[H] < 0)
+				hsv[H] += 1.0;
+			if(hsv[H] > 1)
+				hsv[H] -= 1.0;
+		}
+		return hsv;
+	}
 	
 	/**
 	 * The RGBtoHSV function is taken from the book Principles of Digital Image Processing by 
@@ -96,7 +137,7 @@ public abstract class BeautifyUtils {
 	 * 
 	 * @author Wilhelm Burger
 	 * @author Mark J Burge
-	 * @param rgb
+	 * @param hsv
 	 * @return
 	 */
 	public static int[] HSVtoRGB(float[] hsv) {

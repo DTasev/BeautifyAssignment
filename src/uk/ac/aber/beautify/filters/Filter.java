@@ -26,8 +26,8 @@ public abstract class Filter {
 	 * This is the heart of the filtering system.  The filter method takes in an ImageProcessor
 	 * object (the image to be filtered), processes that image, and then returns the filtered
 	 * version.
-	 * 
-	 * @param 	ImageProcessor - the image to be filtered
+	 *
+	 * @param 	ip - the image to be filtered
 	 * @return  ImageProcessor - the processed version of the image
 	 */
 	public BufferedImage filter(BufferedImage ip) {
@@ -49,7 +49,7 @@ public abstract class Filter {
 	/**
 	 * Do we really need a Javadoc to explain what this method does?
 	 * 
-	 * @param String - the name of the filter
+	 * @param name - the name of the filter
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -83,6 +83,9 @@ public abstract class Filter {
 		// Convert the pixel values from BINARY to Decimal Values
 		int[] rgbVals = {(rawValue & 0xff0000) >> 16, (rawValue & 0x00ff00) >> 8, (rawValue & 0x0000ff)};
 		return rgbVals;
+	}
+	public double[] grabLABValues(BufferedImage img, int u, int v) {
+		return BeautifyUtils.RGBtoLAB(grabRGBValues(img, u, v));
 	}
 
 }

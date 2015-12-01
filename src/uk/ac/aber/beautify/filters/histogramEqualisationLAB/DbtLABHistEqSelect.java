@@ -1,13 +1,14 @@
-package uk.ac.aber.beautify.filters.histogram.filter;
+
+package uk.ac.aber.beautify.filters.histogramEqualisationLAB;
 
 import uk.ac.aber.beautify.core.BeautifyFilters;
 import uk.ac.aber.beautify.filters.Filter;
 
-public class DbtCumulativeSelect implements BeautifyFilters{
+public class DbtLABHistEqSelect implements BeautifyFilters{
 
     @Override
     public Filter autoBeautify() {
-        return new DbtCumulative();
+        return new DbtLABHistogramEqualisation();
     }
 
     @Override
