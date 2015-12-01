@@ -30,7 +30,7 @@ public class DbtHistogramEqualisation extends Filter {
 
         // initialise histograms
         for (int i = 0; i < 3; i++) {
-            nHist[i] = new NormalHistogram(0, 255, 1);
+            nHist[i] = new NormalHistogram(0, 256, 1);
         }
 
         for (int u = 0; u < img.getWidth(); u++) {
@@ -42,7 +42,7 @@ public class DbtHistogramEqualisation extends Filter {
                 }
             }
         }
-        new ShowHistogram(nHist[0].getArray(), "RED");
+//        new ShowHistogram(nHist[0].getArray(), "RED");
 
         // Calculate Cumulative Histogram for Red, Green and Blue Channel
         Histogram[] cHist = new CumulativeHistogram[3];
@@ -53,7 +53,7 @@ public class DbtHistogramEqualisation extends Filter {
         String[] channels = {"R Channel", "G Channel", "B Channel"};
         // show cumulative histograms
         for (int i = 0; i < 3; i++) {
-            new ShowHistogram(cHist[i].getArray(), channels[i]);
+  //          new ShowHistogram(cHist[i].getArray(), channels[i]);
         }
         // Histogram Equalisation on cumulative histogram of Red, Green and Blue channels
         Histogram[] eqHist = new HistogramEqualiser[3];
@@ -61,8 +61,9 @@ public class DbtHistogramEqualisation extends Filter {
             eqHist[i] = new HistogramEqualiser(cHist[i], img.getHeight() * img.getWidth());
         }
 
+        Histogram[] altHist = new NormalHistogram[3];
         for (int i = 0; i < 3; i++) {
-            nHist[i] = new NormalHistogram(0, 255, 1);
+            altHist[i] = new NormalHistogram(0, 256, 1);
         }
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
@@ -73,7 +74,7 @@ public class DbtHistogramEqualisation extends Filter {
                     // Get new pixel value from equalised histogram
                     rgbValues[i] = eqHist[i].getIndex(rgbValues[i]);
                     // add to histogram to show equalised
-                    nHist[i].addValue(rgbValues[i]);
+                    altHist[i].addValue(rgbValues[i]);
                 }
 
                 // clamping RGB before putting into picture
