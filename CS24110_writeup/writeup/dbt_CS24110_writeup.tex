@@ -22,7 +22,8 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{CS24110 Assignment: Automatic Enhancement of Digital Images via Mid-Mean Alignment}
+%WRITE CORRECT BLUR FILTER
+\title{CS24110 Assignment: Automatic Enhancement of Digital Images via Histogram Equalisation on LAB Colour Space, Contrast Enhancement on RGB and Average Value Blur Filter}
 
 
 % author names and affiliations
@@ -36,7 +37,9 @@
 {H. Strange}
 
 \IEEEtitleabstractindextext{%
+	
 
+%TODO write abstract last, summarise whole paper
 % Your abstract goes in here
 \begin{abstract}
 This paper presents a novel approach to image enhancement based on the alignment of an image's intensity profile to a specified ideal value.  This mid-mean alignment algorithm is easy to understand and fast to compute.  The algorithm is tested on five test images and the results show that, in some circumstances, the algorithm is able to improve the quality of an image.  However, the algorithm does contain some properties which means that the results may not always be satisfactory.  These aspects are discussed in this paper alongside possible points for improvement.
@@ -51,6 +54,12 @@ This paper presents a novel approach to image enhancement based on the alignment
 
 \IEEEdisplaynontitleabstractindextext
 
+%TODO
+%what is image processing
+%what is it used for/why is it useful
+%what is the assignment problem
+%what is enhancement?
+%how did we go on solving it
 
 \section{Introduction}
 
@@ -81,23 +90,29 @@ This paper is concerned with a new method to enhance a given image without any u
 
 The remainder of the paper is organised as follows: in Section \ref{sec:methods} the methodology of the approach is given at both a high and low level.  The results are given in Section \ref{sec:results} and then discussions and conclusions are drawn in Section \ref{sec:discussion}.
 
-\begin{figure}[b!]
-	\centering
-	\includegraphics[width=0.48\textwidth]{figures//sketch}
-	\caption{A sketch of the proposed enhancement method.  The intensity of each colour channel is aligned so that the mean of the intensities corresponds to the mid-point of the intensity range.  For an $24$-bit colour image ($8$-bit per channel), this will correspond to a shift of intensities so that the mean lies at  $127$.}
-	\label{fig:sketch}
+%TODO change to 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.42\textwidth]{../../../Desktop/CS24110_writeup/writeup/figures/flowchart}
+\caption{A flowchart of the proposed enhancement method. It shows the steps of that will be performed in the enhancement.}
+\label{fig:flowchart}
 \end{figure}
 
 \section{Methodology}
 \label{sec:methods}
 
-In this section the methodology behind the mean matching approach to image enhancement is described.  As well as a high-level overview of how the method works, a mathematical outline and pseudocode are also provided.
+% Blur Filter >
+%  RGB TO LAB, 
+% Histogram Equalisation, 
+% Lab to RGB, 
+% Contrast Adjustment
+In this section the methods behind the Average Value Blur Filter, Colour Space Conversion, Histogram Equalisation, and Contrast Adjustment is described. A high-level overview of how the method works, a mathematical outline and pseudocode are also provided.
+%In this section the methodology behind the mean matching approach to image enhancement is described.  As well as a high-level overview of how the method works, a mathematical outline and pseudocode are also provided.
 
 \subsection{High-level Overview}
+The idea behind the proposed automatic enhancement approach is to apply a Average Value Blur Filter for noise removal, then do a Histogram Equalisation on the Luminosity channel in LAB(CIELAB) to enhance the on the picture, then convert back to RGB and do a contrast adjustment. The enhancement will follow the flowchart on figure \ref{fig:flowchart}.
 
-The basic idea behind the proposed automatic enhancement approach is to adjust the brightness of a given image such that its histogram is centred at the middle point of the intensity range.  For an 8-bit grayscale image, this middle value would correspond to $127$.  To achieve this mid-mean alignment, the intensity spectrum of the image is shifted such that the mean for each channel lies at $127$.  For a $24$-bit true colour image the method is applied in the same manner for each colour channel.  To find the adjustment amount for each colour channel, the offset between the actual mean, and the ``ideal'' mean (in this case $(K-1)/2$ or $127$) is computed.  This value is then added to each pixel to provide the brightness adjustment.
-
-Figure \ref{fig:sketch} details a sketch of the proposed method.  The current mean of each colour channel (orange bar) is found and then the intensity shift is found by calculating the offset between the ``perfect'' mean ($(K - 1)/2$) and the actual mean.  This offset is then applied as a brightness adjustment for each pixel.
+%TODO remove -> The basic idea behind the proposed automatic enhancement approach is to adjust the brightness of a given image such that its histogram is centred at the middle point of the intensity range.  For an 8-bit grayscale image, this middle value would correspond to $127$.  To achieve this mid-mean alignment, the intensity spectrum of the image is shifted such that the mean for each channel lies at $127$.  For a $24$-bit true colour image the method is applied in the same manner for each colour channel.  To find the adjustment amount for each colour channel, the offset between the actual mean, and the ``ideal'' mean (in this case $(K-1)/2$ or $127$) is computed.  This value is then added to each pixel to provide the brightness adjustment.
 
 \begin{algorithm}[tp!]
 \caption{Mid-Mean Alignment Algorithm}
@@ -125,9 +140,21 @@ Figure \ref{fig:sketch} details a sketch of the proposed method.  The current me
 \end{algorithmic}
 \end{algorithm}
 
+\clearpage
 \subsection{Detailed Description}
 
-The proposed mid-mean alignment algorithm is a point operation that acts on each colour channel in the same manner.  To simplify the description of the operation, the algorithm is described in terms of operating upon a single grayscale image.  However, it is worth noting that the final algorithm works on an RGB image and so the described approach is repeated for each colour channel.  The described point operation takes as input a grayscale image $I(u, v)$ of size $m \times n$ and produces an enhanced image $I'(u, v)$ using a point operation function $f$.  That is:
+The proposed enhancement algorithm is a combination of filter and point-based histogram operations. To simplify the description of the operations, the algorithms assume that the picture is grayscale, however the final algorithm works on RGB images, by repeating the functions for each color channel. 
+The first operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The described filter operation acts on each channel in the same manner, using a filter operation function $f$, with width 3, meaning it takes the neighbouring pixels of the current pixel\cite{averageFilter}. That is: 
+%TODO add pseudo code?
+\begin{equation}
+	I'(u, v) = f(\frac{1}{9}\cdot\sum_{j=-1}^{1}\sum_{i=-1}^{1}I(u+i, v+j))
+\end{equation}
+
+%TODO add histogram to show that full range of value isnt used?
+The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. Often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low and high end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$pmin, pmax$]
+%TODO finish writing the contrast adjustment, refer to lecture, https://blackboard.aber.ac.uk/bbcswebdav/pid-688647-dt-content-rid-1002902_1/courses/CS24110_AB0_2015-16/CS241_L09_LQ.pdf is the link for the slides, first do histogram and cumulative histogram, which can be re-used for LAB EQ later, then add equation for contrast adjustment
+%other two operations, the Contrast Adjustment and the Luminosity equalisation, are both point-based histogram operations.
+%The proposed mid-mean alignment algorithm is a point operation that acts on each colour channel in the same manner.  To simplify the description of the operation, the algorithm is described in terms of operating upon a single grayscale image.  However, it is worth noting that the final algorithm works on an RGB image and so the described approach is repeated for each colour channel.  The described point operation takes as input a grayscale image $I(u, v)$ of size $m \times n$ and produces an enhanced image $I'(u, v)$ using a point operation function $f$.  That is:
 
 \begin{equation}
 	I'(u, v) = f(I(u, v))	

@@ -21,6 +21,12 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{averageFilter}
+\BIBentryALTinterwordspacing
+Average filter function. [Online]. Available:
+  \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-690794-dt-content-rid-1006217_1/courses/CS24110_AB0_2015-16/C241_L12_LQ.pdf}
+\BIBentrySTDinterwordspacing
+
 \bibitem{JavaWR}
 ``{WritableRaster, Oracle Java SE7},''
   \url{http://docs.oracle.com/javase/7/docs/api/java/awt/image/WritableRaster.html},
