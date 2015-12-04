@@ -29,12 +29,12 @@
 % author names and affiliations
 % transmag papers use the long conference author name format.
 
-\author{\IEEEauthorblockN{Harry Strange}
+\author{\IEEEauthorblockN{Dimitar Tasev}
 \IEEEauthorblockA{Department of Computer Science, Aberystwyth University, Aberystwyth, SY23 3DB, UK}}% <-this % stops an unwanted space
 
 % The paper headers
 \markboth{CS24110}%
-{H. Strange}
+{D. Tasev}
 
 \IEEEtitleabstractindextext{%
 	
@@ -93,7 +93,7 @@ The remainder of the paper is organised as follows: in Section \ref{sec:methods}
 %TODO change to 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.42\textwidth]{../../../Desktop/CS24110_writeup/writeup/figures/flowchart}
+\includegraphics[width=0.42\textwidth]{figures/flowchart}
 \caption{A flowchart of the proposed enhancement method. It shows the steps of that will be performed in the enhancement.}
 \label{fig:flowchart}
 \end{figure}
@@ -140,25 +140,92 @@ The idea behind the proposed automatic enhancement approach is to apply a Averag
 \end{algorithmic}
 \end{algorithm}
 
-\clearpage
+\begin{figure}[b]
+\centering
+\includegraphics[width=0.42\textwidth]{figures/contrAdj.png}
+\caption{An image showing how the range of values will be set when applying contrast adjustment to the picture.}
+\label{fig:contrAdj}
+\end{figure}
+
+\begin{algorithm}[b!] %normal hist
+	\caption{Normal Histogram}
+	\label{alg:norm_hist}
+	\begin{algorithmic}[1]
+		\Function{NormalHistogram} {$I$} \Comment{where $| I | = m \times n$, \\ $K = 256$}
+		\State $H = [0, K-1]$
+		\State 
+		\For{\textbf{each} $p$ \textbf{in} $I$} 
+		\State $H(p) = H(p) + 1$
+		\EndFor
+		\State 
+		\State
+		\Return $H$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}[tp!]%cumulative hist
+	\caption{Cumulative Histogram}
+	\label{alg:cum_hist}
+	\begin{algorithmic}[1]
+		\Function{CumulativeHistogram} {$I$} \Comment{where $K = 256$}
+
+		\State $H = $ NormalHistogram()
+		\State $CH = [0, K-1]$
+		\State
+		\For{\textbf{each} $v$ \textbf{in} $H$} 
+		\State $CH[v] = CH[v] + H[v]$
+		\EndFor
+		\State 
+		\State
+		\Return $I'$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
 \subsection{Detailed Description}
 
 The proposed enhancement algorithm is a combination of filter and point-based histogram operations. To simplify the description of the operations, the algorithms assume that the picture is grayscale, however the final algorithm works on RGB images, by repeating the functions for each color channel. 
 The first operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The described filter operation acts on each channel in the same manner, using a filter operation function $f$, with width 3, meaning it takes the neighbouring pixels of the current pixel\cite{averageFilter}. That is: 
 %TODO add pseudo code?
-\begin{equation}
+\begin{equation} %equation that shows filter calculation
 	I'(u, v) = f(\frac{1}{9}\cdot\sum_{j=-1}^{1}\sum_{i=-1}^{1}I(u+i, v+j))
 \end{equation}
 
-%TODO add histogram to show that full range of value isnt used?
-The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. Often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low and high end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$pmin, pmax$]
+The other two operations both rely on histograms to perform their operations. A histogram is a graphical representation of a distribution of numerical data\cite{histDesc}\cite{histDescWiki}. Figure \ref{fig:hist_comp} shows both a normal histogram and a cumulative histogram, both of which are used. The pseudocode for creating a normal histogram \ref{alg:norm_hist}, and the pseudocode for creating a cumulative histogram from the normal histogram \ref{alg:cum_hist} are included in the paper. The equation for deriving a cumulative histogram from a normal histogram can be simply written as: 
+\begin{equation}%equation for cumulative histogram
+\begin{aligned}
+H(i) &=  \sum_{j = 0}^{i}h(j) 
+& for(0 \leq i < K)
+\end{aligned}
+\end{equation}
+
+\begin{figure}[h] % normal and cumulative histograms shown
+	\centering
+	\subfigure[original] {
+		\includegraphics[width=0.2\textwidth]{figures/norm_hist.png}
+	}
+	\subfigure[modified] {
+		\includegraphics[width=0.2\textwidth]{figures/cum_hist.png}
+	}
+	\caption{Two images showing a normal histogram and a cumulative histogram of it.}
+	\label{fig:hist_comp}
+\end{figure}
+\begin{figure}
+	\centering
+%	\includegraphics[width=0.2\textwidth]{figues/cum_hist_range.png}
+\end{figure}
+The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. Often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low and high end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$p_{min}, p_{max}$] \ref{fig:contrAdj}. To calculate the two quantiles we set a range for ignored pixels $q$. Using that range we can calculate the quantiles using the cumulative histogram:
+\begin{equation}
+\begin{aligned}
+&p'_{low} = \min\{i \| H(i) \geq m\cdot n \cdot q_{low}\}\\
+&p'_{high} = \max\{i \| H(h) \leq m\cdot n \cdot q_{high}\}
+\end{aligned}
+\end{equation}
+we get the ranges \includegraphics[width=0.2\textwidth]{figures/cum_hist_range.png}
 %TODO finish writing the contrast adjustment, refer to lecture, https://blackboard.aber.ac.uk/bbcswebdav/pid-688647-dt-content-rid-1002902_1/courses/CS24110_AB0_2015-16/CS241_L09_LQ.pdf is the link for the slides, first do histogram and cumulative histogram, which can be re-used for LAB EQ later, then add equation for contrast adjustment
+
 %other two operations, the Contrast Adjustment and the Luminosity equalisation, are both point-based histogram operations.
 %The proposed mid-mean alignment algorithm is a point operation that acts on each colour channel in the same manner.  To simplify the description of the operation, the algorithm is described in terms of operating upon a single grayscale image.  However, it is worth noting that the final algorithm works on an RGB image and so the described approach is repeated for each colour channel.  The described point operation takes as input a grayscale image $I(u, v)$ of size $m \times n$ and produces an enhanced image $I'(u, v)$ using a point operation function $f$.  That is:
-
-\begin{equation}
-	I'(u, v) = f(I(u, v))	
-\end{equation}
 
 \noindent where $f$ is a homogeneous point operation and the geometry of $I'$ is exactly the same as $I$.
 

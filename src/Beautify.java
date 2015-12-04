@@ -18,7 +18,6 @@ import uk.ac.aber.beautify.filters.histogramEqualisation.DbtHistEqSelect;
 import uk.ac.aber.beautify.filters.histogramEqualisationLAB.DbtLABHistEqSelect;
 import uk.ac.aber.beautify.filters.invert.DbtInvertFilterSelect;
 import uk.ac.aber.beautify.filters.labEqualiseAndRGBContrastAdjust.DbtLABeqAndCASelect;
-import uk.ac.aber.beautify.filters.labEqualiseAndRGBContrastAdjust.DbtLABeqAndCASelectImage;
 import uk.ac.aber.beautify.gui.BeautifyGUI;
 
 import java.util.Scanner;

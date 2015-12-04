@@ -4,6 +4,7 @@ import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.filters.averageFilter.AverageFilter;
 import uk.ac.aber.beautify.filters.gaussianFilter.GaussianFilter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
+import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
 import uk.ac.aber.beautify.filters.histogram.equalisation.HistogramEqualiser;
 import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
@@ -69,9 +70,12 @@ public class DbtLABeqAndContrastAdjustment extends Filter {
             }
         }
 
+        new ShowHistogram(r.getArray(), "Normal Histogram");
         Histogram cmR = new CumulativeHistogram(r);
         Histogram cmG = new CumulativeHistogram(g);
         Histogram cmB = new CumulativeHistogram(b);
+
+        new ShowHistogram(cmR.getArray(), "Cumulative Histogram");
 
         // set q(LOW) and q(HIGH) ranges
         float qlow = 0.05f;
@@ -147,8 +151,8 @@ public class DbtLABeqAndContrastAdjustment extends Filter {
                 normalHist.addValue((int) labValues[L]);
             }
         }
-        Histogram cumuativeHist = new CumulativeHistogram(normalHist);
-        Histogram equalisedHist = new HistogramEqualiser(cumuativeHist, img.getHeight() * img.getWidth());
+        Histogram cumulativeHist = new CumulativeHistogram(normalHist);
+        Histogram equalisedHist = new HistogramEqualiser(cumulativeHist, img.getHeight() * img.getWidth());
 
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {

@@ -27,6 +27,23 @@ Average filter function. [Online]. Available:
   \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-690794-dt-content-rid-1006217_1/courses/CS24110_AB0_2015-16/C241_L12_LQ.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{histDesc}
+\BIBentryALTinterwordspacing
+Histogram description. [Online]. Available:
+  \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-686416-dt-content-rid-999089_1/courses/CS24110_AB0_2015-16/CS241_L07_LQ.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{histDescWiki}
+\BIBentryALTinterwordspacing
+Histogram. [Online]. Available: \url{https://en.wikipedia.org/wiki/Histogram}
+\BIBentrySTDinterwordspacing
+
+\bibitem{automaticContrast}
+\BIBentryALTinterwordspacing
+Automatic contrast adjustment. [Online]. Available:
+  \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-688647-dt-content-rid-1002902_1/courses/CS24110_AB0_2015-16/CS241_L09_LQ.pdf}
+\BIBentrySTDinterwordspacing
+
 \bibitem{JavaWR}
 ``{WritableRaster, Oracle Java SE7},''
   \url{http://docs.oracle.com/javase/7/docs/api/java/awt/image/WritableRaster.html},
