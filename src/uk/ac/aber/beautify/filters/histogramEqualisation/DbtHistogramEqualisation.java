@@ -1,6 +1,7 @@
 package uk.ac.aber.beautify.filters.histogramEqualisation;
 
 import uk.ac.aber.beautify.filters.Filter;
+import uk.ac.aber.beautify.filters.gaussianFilter.GaussianFilter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
 import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
 import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
@@ -13,7 +14,6 @@ import java.awt.image.BufferedImage;
 /**
  * Created by Dimitar on 26/11/2015.
  */
-@SuppressWarnings("ALL")
 public class DbtHistogramEqualisation extends Filter {
     public static final int R = 0;
     public static final int G = 1;
@@ -30,7 +30,7 @@ public class DbtHistogramEqualisation extends Filter {
 
         // initialise histograms
         for (int i = 0; i < 3; i++) {
-            nHist[i] = new NormalHistogram(0, 256, 1);
+            nHist[i] = new NormalHistogram(0, 255, 1);
         }
 
         for (int u = 0; u < img.getWidth(); u++) {
@@ -42,7 +42,10 @@ public class DbtHistogramEqualisation extends Filter {
                 }
             }
         }
-//        new ShowHistogram(nHist[0].getArray(), "RED");
+        String[] channels = {"R Channel", "G Channel", "B Channel"};
+        /*for (int i = 0; i < 3; i++) {
+            new ShowHistogram(nHist[i].getArray(), channels[i]);
+        }*/
 
         // Calculate Cumulative Histogram for Red, Green and Blue Channel
         Histogram[] cHist = new CumulativeHistogram[3];
@@ -50,10 +53,9 @@ public class DbtHistogramEqualisation extends Filter {
             cHist[i] = new CumulativeHistogram(nHist[i]);
         }
 
-        String[] channels = {"R Channel", "G Channel", "B Channel"};
         // show cumulative histograms
         for (int i = 0; i < 3; i++) {
-  //          new ShowHistogram(cHist[i].getArray(), channels[i]);
+            new ShowHistogram(cHist[i].getArray(), channels[i]);
         }
         // Histogram Equalisation on cumulative histogram of Red, Green and Blue channels
         Histogram[] eqHist = new HistogramEqualiser[3];
@@ -74,7 +76,7 @@ public class DbtHistogramEqualisation extends Filter {
                     // Get new pixel value from equalised histogram
                     rgbValues[i] = eqHist[i].getIndex(rgbValues[i]);
                     // add to histogram to show equalised
-                    altHist[i].addValue(rgbValues[i]);
+                    //altHist[i].addValue(rgbValues[i]);
                 }
 
                 // clamping RGB before putting into picture
@@ -82,9 +84,11 @@ public class DbtHistogramEqualisation extends Filter {
                 outputImage.setRGB(u, v, ((rgbValues[0] & 0xff) << 16) | ((rgbValues[1] & 0xff) << 8) | (rgbValues[2] & 0xff));
             }
         }
-        new ShowHistogram(nHist[0].getArray(), "Equalised red");
-        new ShowHistogram(nHist[1].getArray(), "Equalised green");
-        new ShowHistogram(nHist[2].getArray(), "Equalised blue");
+        //new ShowHistogram(altHist[0].getArray(), "Equalised red");
+        //new ShowHistogram(altHist[1].getArray(), "Equalised green");
+        //new ShowHistogram(altHist[2].getArray(), "Equalised blue");
+        outputImage = new GaussianFilter(outputImage).run();
+
         return outputImage;
     }
 }

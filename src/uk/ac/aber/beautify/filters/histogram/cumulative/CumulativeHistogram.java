@@ -6,7 +6,7 @@ import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
 /**
  * Created by Dimitar on 29/11/2015.
  */
-public class CumulativeHistogram extends NormalHistogram implements Histogram{
+public class CumulativeHistogram extends NormalHistogram implements Histogram {
     private Histogram h;
 
     public CumulativeHistogram(Histogram h){

@@ -1,6 +1,7 @@
 package uk.ac.aber.beautify.filters.contrastAdjustment;
 
 import uk.ac.aber.beautify.filters.Filter;
+import uk.ac.aber.beautify.filters.histogram.Histogram;
 import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
 
@@ -37,9 +38,9 @@ public class DbtContrastAdjustment extends Filter {
     public BufferedImage filter(BufferedImage img) {
         BufferedImage outputImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 
-        NormalHistogram r = new NormalHistogram(0, 255, 1);
-        NormalHistogram g = new NormalHistogram(0, 255, 1);
-        NormalHistogram b = new NormalHistogram(0, 255, 1);
+        Histogram r = new NormalHistogram(0, 255, 1);
+        Histogram g = new NormalHistogram(0, 255, 1);
+        Histogram b = new NormalHistogram(0, 255, 1);
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
                 // Grab the converted HSV Values
@@ -47,13 +48,12 @@ public class DbtContrastAdjustment extends Filter {
                 r.addValue(rgbValues[0]);
                 g.addValue(rgbValues[1]);
                 b.addValue(rgbValues[2]);
-
             }
         }
 
-        CumulativeHistogram cmR = new CumulativeHistogram(r);
-        CumulativeHistogram cmG = new CumulativeHistogram(g);
-        CumulativeHistogram cmB = new CumulativeHistogram(b);
+        Histogram cmR = new CumulativeHistogram(r);
+        Histogram cmG = new CumulativeHistogram(g);
+        Histogram cmB = new CumulativeHistogram(b);
 
         // set q(LOW) and q(HIGH) ranges
         float qlow = 0.05f;

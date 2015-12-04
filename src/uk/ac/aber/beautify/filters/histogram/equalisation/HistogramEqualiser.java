@@ -26,7 +26,7 @@ public class HistogramEqualiser extends NormalHistogram implements Histogram{
         int maxRange = h.getMaxRange();
         for (int i = 0; i < h.getArraySize(); i++) {
             // array[i] = contains the new position for histArray[i]
-            array[i] = histArray[i] * (maxRange) / pixelCount;
+            array[i] = histArray[i] * maxRange / pixelCount;
         }
     }
     @Override

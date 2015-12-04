@@ -3,13 +3,13 @@ package uk.ac.aber.beautify.filters.histogramEqualisationLAB;
 import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
 import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
-import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
 import uk.ac.aber.beautify.filters.histogram.equalisation.HistogramEqualiser;
 import uk.ac.aber.beautify.utils.BeautifyUtils;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * Created by Dimitar on 26/11/2015.
@@ -26,32 +26,33 @@ public class DbtLABHistogramEqualisation extends Filter {
 
     public BufferedImage filter(BufferedImage img) {
         BufferedImage outputImage = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-
+        WritableRaster outputRaster = img.getRaster();
+        Raster inputRaster = img.getData();
         // initialise histograms
-        Histogram nHist = new NormalHistogram(0, 100, 1);
+        Histogram normalHist = new NormalHistogram(0, 100, 1);
 
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
                 // Grab the converted LAB Values
-                double[] labValues = grabLABValues(img, u, v);
+                double[] labValues = grabLABValues(inputRaster, u, v);
                 // creating histogram for only L channel
-                nHist.addValue((int) labValues[L]);
+                normalHist.addValue((int) labValues[L]);
             }
-    }
-    String[] channels = {"L Channel", "a Channel", "b Channel"};
-    // show histogram
-    //new ShowHistogram(nHist.getArray(), channels[L]);
+        }
+        String[] channels = {"L Channel", "a Channel", "b Channel"};
+        // show histogram
+        //new ShowHistogram(nHist.getArray(), channels[L]);
 
-    // Calculate Cumulative Histogram
-    Histogram cHist = new CumulativeHistogram(nHist);
+        // Calculate Cumulative Histogram
+        Histogram cumulativeHist = new CumulativeHistogram(normalHist);
 
-    // show cumulative histogram
-    //new ShowHistogram(cHist.getArray(), channels[L]);
+        // show cumulative histogram
+        //new ShowHistogram(cHist.getArray(), channels[L]);
 
-    // Equalisation on cumulative histogram
-        Histogram eqHist = new HistogramEqualiser(nHist, img.getHeight() * img.getWidth());
+        // Equalisation on cumulative histogram
+        Histogram equalisedHist = new HistogramEqualiser(cumulativeHist, img.getHeight() * img.getWidth());
         // New histogram to hold the values after they have been equalised and swapped
-        Histogram eqNormHist = new NormalHistogram(0, 101, 1);
+        //Histogram eqNormHist = new NormalHistogram(0, 101, 1);
 
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
@@ -60,20 +61,21 @@ public class DbtLABHistogramEqualisation extends Filter {
                 // Get new pixel value from equalised histogram,
                 // it holds what the new value for the pixel should be,
                 // and set the current pixel's value to it
-                labValues[L] = eqHist.getIndex((int) labValues[L]);
+                labValues[L] = equalisedHist.getIndex((int) labValues[L]);
                 // creating new histogram of equalised luminosity
-                eqNormHist.addValue((int) labValues[L]);
+          //      eqNormHist.addValue((int) labValues[L]);
                 int[] rgbValues = BeautifyUtils.LABtoRGB(labValues);
 
                 // Clamping RGB Values after transformation
                 BeautifyUtils.clampRGB(rgbValues);
-                outputImage.setRGB(u, v, ((rgbValues[0] & 0xff) << 16) | ((rgbValues[1] & 0xff) << 8) | (rgbValues[2] & 0xff));
+                outputRaster.setPixel(u, v, rgbValues);
             }
         }
-
+      //  outputRaster = new GaussianFilter(outputImage, outputRaster).runRaster();
+        outputImage.setData(outputRaster);
         // creating cumulative histogram for equalised luminosity
-        Histogram cumLHist = new CumulativeHistogram((NormalHistogram) eqNormHist);
-        new ShowHistogram(cumLHist.getArray(), "Equalised Luminosity");
+        //Histogram cumLHist = new CumulativeHistogram((NormalHistogram)eqNormHist);
+        //new ShowHistogram(cumLHist.getArray(), "Equalised Luminosity");
 
         return outputImage;
     }

@@ -13,6 +13,7 @@
 package uk.ac.aber.beautify.filters;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
 
 import uk.ac.aber.beautify.utils.BeautifyUtils;
 
@@ -77,12 +78,20 @@ public abstract class Filter {
 		return hsvVals;
 	}
 
-	public int[] grabRGBValues(BufferedImage img, int u, int v) {
+	public static int[] grabRGBValues(BufferedImage img, int u, int v) {
 		// Grab the pixel values in BINARY
 		int rawValue = img.getRGB(u, v);
 		// Convert the pixel values from BINARY to Decimal Values
 		int[] rgbVals = {(rawValue & 0xff0000) >> 16, (rawValue & 0x00ff00) >> 8, (rawValue & 0x0000ff)};
 		return rgbVals;
+	}
+	public static int[] grabRGBValues(Raster inputRaster, int u, int v){
+		int[] inputPixels = new int[3];
+		inputRaster.getPixel(u, v, inputPixels);
+		return inputPixels;
+	}
+	public double[] grabLABValues(Raster inputRaster, int u, int v) {
+		return BeautifyUtils.RGBtoLAB(grabRGBValues(inputRaster, u, v));
 	}
 	public double[] grabLABValues(BufferedImage img, int u, int v) {
 		return BeautifyUtils.RGBtoLAB(grabRGBValues(img, u, v));

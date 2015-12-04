@@ -13,9 +13,12 @@ import uk.ac.aber.beautify.core.BeautifyKernel;
 import uk.ac.aber.beautify.filters.brightness.DbtBrightnessFilterSelect;
 import uk.ac.aber.beautify.filters.contrastAdjustment.DbtContrastAdjSelect;
 import uk.ac.aber.beautify.filters.grayscale.DbtGrayscaleFilterSelect;
+import uk.ac.aber.beautify.filters.histogram.kateEqualisation.KateSelect;
 import uk.ac.aber.beautify.filters.histogramEqualisation.DbtHistEqSelect;
 import uk.ac.aber.beautify.filters.histogramEqualisationLAB.DbtLABHistEqSelect;
 import uk.ac.aber.beautify.filters.invert.DbtInvertFilterSelect;
+import uk.ac.aber.beautify.filters.labEqualiseAndRGBContrastAdjust.DbtLABeqAndCASelect;
+import uk.ac.aber.beautify.filters.labEqualiseAndRGBContrastAdjust.DbtLABeqAndCASelectImage;
 import uk.ac.aber.beautify.gui.BeautifyGUI;
 
 import java.util.Scanner;
@@ -32,9 +35,9 @@ public class Beautify {
         String input = new String();
 
         int count = 0; // print menu every 5 times
-        beautify.setFilterSet(new DbtLABHistEqSelect());
+        beautify.setFilterSet(new DbtLABeqAndCASelect());
         while (input != "x") {
-            if(count%5 == 0)
+            if (count % 5 == 0)
                 printMenu();
             count++;
             input = in.next() + in.nextLine();
@@ -65,6 +68,14 @@ public class Beautify {
                     System.out.println("Lab Histogram Equalisation");
                     beautify.setFilterSet(new DbtLABHistEqSelect());
                     break;
+                case "kate":
+                    System.out.println("Kate Histogram Equalisation");
+                    beautify.setFilterSet(new KateSelect());
+                    break;
+                case "labcontr":
+                    System.out.println("Lab Equalisation and RGB Contrast Adjustment");
+                    beautify.setFilterSet(new DbtLABeqAndCASelect());
+                    break;
                 default:
                     System.out.println("Invalid choice");
                     break;
@@ -79,6 +90,8 @@ public class Beautify {
                 + "gray -> Grayscale\n"
                 + "contr -> contrast adjustment\n"
                 + "heq -> histogram equalisation on RGB\n"
-                + "labheq -> histogram equalisation on L channel in Lab");
+                + "labheq -> histogram equalisation on L channel in Lab\n"
+                + "kate -> kate equalisation\n"
+                + "labcontr -> lab equalise and rgb contrast adjustment");
     }
 }
