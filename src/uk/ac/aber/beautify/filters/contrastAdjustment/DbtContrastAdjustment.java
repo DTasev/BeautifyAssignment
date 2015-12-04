@@ -2,6 +2,7 @@ package uk.ac.aber.beautify.filters.contrastAdjustment;
 
 import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
+import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
 import uk.ac.aber.beautify.filters.histogram.normal.NormalHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
 
@@ -11,22 +12,6 @@ import java.awt.image.BufferedImage;
  * Created by Dimitar on 26/11/2015.
  */
 public class DbtContrastAdjustment extends Filter {
-    // create cumulative histogram, from histogram
-    // q = qhigh = qlow = 0.1
-    // p(low) = m*n*q(low)
-    // p(high) = m*q*(1-q(high))
-    // if p <= p(low) set to p(min)
-    // else if p > p(low) && p < p(high) set to p(min) + (p-p(low)*(p(max)-p(min)/p(high)-p(low))
-    // else if p >= p(high) set to p(max)
-    // remap pixels
-    /*
-    do histogram/cumulative histogram on channel that will be changed
-    convert to hsv
-    auto contrast on saturation *might work*
-        OR
-    auto contrast on value
-
-     */
     public static final int R = 0;
     public static final int G = 1;
     public static final int B = 2;
@@ -51,6 +36,7 @@ public class DbtContrastAdjustment extends Filter {
             }
         }
 
+        new ShowHistogram(r.getArray(), "Red Pre-Contrast Adj");
         Histogram cmR = new CumulativeHistogram(r);
         Histogram cmG = new CumulativeHistogram(g);
         Histogram cmB = new CumulativeHistogram(b);
@@ -90,6 +76,7 @@ public class DbtContrastAdjustment extends Filter {
         int pmin = 0;
         int pmax = 255;
 
+        Histogram contrAdjHist = new NormalHistogram(0, 256, 1);
         for (int u = 0; u < img.getWidth(); u++) {
             for (int v = 0; v < img.getHeight(); v++) {
                 int[] rgbValues = grabRGBValues(img, u, v);
@@ -106,9 +93,11 @@ public class DbtContrastAdjustment extends Filter {
                         rgbValues[i] = pmin + ((rgbValues[i] - plow[i]) * (pmax - pmin) / (phigh[i] - plow[i]));
                     }
                 }
+                contrAdjHist.addValue(rgbValues[0]);
                 outputImage.setRGB(u, v, ((rgbValues[0] & 0xff) << 16) | ((rgbValues[1] & 0xff) << 8) | (rgbValues[2] & 0xff));
             }
         }
+        new ShowHistogram(contrAdjHist.getArray(), "Red Post-Contrast Adj");
         return outputImage;
     }
 

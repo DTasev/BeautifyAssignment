@@ -41,9 +41,9 @@ public class DbtLABeqAndContrastAdjustment extends Filter {
         /*
         create 2 pictures, store them, compare every pixel, if no difference cry, if difference no cry
          */
-        outputRaster = new AverageFilter(outputImage, outputRaster).runRaster();
         outputRaster = contrastAdjustment(outputRaster);
         outputRaster = labEqualisation(outputRaster);
+        outputRaster = new AverageFilter(outputImage, outputRaster).runRaster();
         outputImage.setData(outputRaster);
         // creating cumulative histogram for equalised luminosity
         //Histogram cumLHist = new CumulativeHistogram((NormalHistogram)eqNormHist);

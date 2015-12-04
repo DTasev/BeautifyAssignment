@@ -91,10 +91,10 @@ This paper is concerned with a new method to enhance a given image without any u
 The remainder of the paper is organised as follows: in Section \ref{sec:methods} the methodology of the approach is given at both a high and low level.  The results are given in Section \ref{sec:results} and then discussions and conclusions are drawn in Section \ref{sec:discussion}.
 
 %TODO change to 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.42\textwidth]{figures/flowchart}
-\caption{A flowchart of the proposed enhancement method. It shows the steps of that will be performed in the enhancement.}
+\includegraphics[width=0.42\textwidth]{figures/flowchart.png}
+\caption{A flowchart of the proposed enhancement method. It shows the steps that will be performed in the automatic enhancement.}
 \label{fig:flowchart}
 \end{figure}
 
@@ -110,44 +110,16 @@ In this section the methods behind the Average Value Blur Filter, Colour Space C
 %In this section the methodology behind the mean matching approach to image enhancement is described.  As well as a high-level overview of how the method works, a mathematical outline and pseudocode are also provided.
 
 \subsection{High-level Overview}
-The idea behind the proposed automatic enhancement approach is to apply a Average Value Blur Filter for noise removal, then do a Histogram Equalisation on the Luminosity channel in LAB(CIELAB) to enhance the on the picture, then convert back to RGB and do a contrast adjustment. The enhancement will follow the flowchart on figure \ref{fig:flowchart}.
+The idea behind the proposed automatic enhancement approach is to do a contrast adjustment to remap the intensity value so that the whole range of possible values is used, convert to LAB(CIELAB) colour space and perform a Histogram Equalisation on the Luminosity channel to enhance the picture, then convert back to RGB, and apply an Average Value Blur Filter for noise removal. The enhancement will follow the flowchart on figure \ref{fig:flowchart}.
 
-%TODO remove -> The basic idea behind the proposed automatic enhancement approach is to adjust the brightness of a given image such that its histogram is centred at the middle point of the intensity range.  For an 8-bit grayscale image, this middle value would correspond to $127$.  To achieve this mid-mean alignment, the intensity spectrum of the image is shifted such that the mean for each channel lies at $127$.  For a $24$-bit true colour image the method is applied in the same manner for each colour channel.  To find the adjustment amount for each colour channel, the offset between the actual mean, and the ``ideal'' mean (in this case $(K-1)/2$ or $127$) is computed.  This value is then added to each pixel to provide the brightness adjustment.
-
-\begin{algorithm}[tp!]
-\caption{Mid-Mean Alignment Algorithm}
-\label{alg:mma}
-\begin{algorithmic}[1]
-\Function{MeanAligment} {$I$} \Comment{where $| I | = m \times n$}
-	\State $I' = \mbox{zeros}(m, n, 3)$
-	\State $\mu_{\mbox{\tiny{ideal}}} = [127, 127, 127]$
-	\State $\mu_{\mbox{\tiny{actual}}} = [0, 0, 0]$
-	\State 
-	\For{\textbf{each} $p$ \textbf{in} $I$} 
-		\State $\mu_{\mbox{\tiny{actual}}} = \mu_{\mbox{\tiny{actual}}} + p$
-	\EndFor
-	\State
-	\State $\mu_{\mbox{\tiny{actual}}} = \mu_{\mbox{\tiny{actual}}} / (m \times n)$
-	\State $s = \mu_{\mbox{\tiny{ideal}}} - \mu_{\mbox{\tiny{actual}}}$
-	\State 
-	\For{\textbf{each} $(p, p')$ \textbf{in} $(I, I')$} 
-		\State $p' = \mbox{Clamp(}p + s$)
-	\EndFor
-	\State 
-	\State
-	\Return $I'$
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\begin{figure}[b]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=0.42\textwidth]{figures/contrAdj.png}
 \caption{An image showing how the range of values will be set when applying contrast adjustment to the picture.}
 \label{fig:contrAdj}
 \end{figure}
 
-\begin{algorithm}[b!] %normal hist
+\begin{algorithm}[bh!] %normal hist
 	\caption{Normal Histogram}
 	\label{alg:norm_hist}
 	\begin{algorithmic}[1]
@@ -163,7 +135,7 @@ The idea behind the proposed automatic enhancement approach is to apply a Averag
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-\begin{algorithm}[tp!]%cumulative hist
+\begin{algorithm}[bh!]%cumulative hist
 	\caption{Cumulative Histogram}
 	\label{alg:cum_hist}
 	\begin{algorithmic}[1]
@@ -173,33 +145,19 @@ The idea behind the proposed automatic enhancement approach is to apply a Averag
 		\State $CH = [0, K-1]$
 		\State
 		\For{\textbf{each} $v$ \textbf{in} $H$} 
-		\State $CH[v] = CH[v] + H[v]$
+		\State $CH[v] = CH[v-1] + H[v]$
 		\EndFor
 		\State 
 		\State
-		\Return $I'$
+		\Return $CH$
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
 \subsection{Detailed Description}
-
-The proposed enhancement algorithm is a combination of filter and point-based histogram operations. To simplify the description of the operations, the algorithms assume that the picture is grayscale, however the final algorithm works on RGB images, by repeating the functions for each color channel. 
-The first operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The described filter operation acts on each channel in the same manner, using a filter operation function $f$, with width 3, meaning it takes the neighbouring pixels of the current pixel\cite{averageFilter}. That is: 
-%TODO add pseudo code?
-\begin{equation} %equation that shows filter calculation
-	I'(u, v) = f(\frac{1}{9}\cdot\sum_{j=-1}^{1}\sum_{i=-1}^{1}I(u+i, v+j))
-\end{equation}
-
-The other two operations both rely on histograms to perform their operations. A histogram is a graphical representation of a distribution of numerical data\cite{histDesc}\cite{histDescWiki}. Figure \ref{fig:hist_comp} shows both a normal histogram and a cumulative histogram, both of which are used. The pseudocode for creating a normal histogram \ref{alg:norm_hist}, and the pseudocode for creating a cumulative histogram from the normal histogram \ref{alg:cum_hist} are included in the paper. The equation for deriving a cumulative histogram from a normal histogram can be simply written as: 
-\begin{equation}%equation for cumulative histogram
-\begin{aligned}
-H(i) &=  \sum_{j = 0}^{i}h(j) 
-& for(0 \leq i < K)
-\end{aligned}
-\end{equation}
-
-\begin{figure}[h] % normal and cumulative histograms shown
+%FORLATER average filter might be very strong on small pictures, and very weak on big pictures, since pictures are smallish, it's very noticeable and it blurs them a lot
+The proposed enhancement algorithm is a combination of filter and point-based histogram operations. To simplify the description of the operations, the algorithm assumes that the picture is grayscale, however the final algorithm works on RGB images, by repeating the functions for each colour channel. 
+\begin{figure}[t] % normal and cumulative histograms 
 	\centering
 	\subfigure[original] {
 		\includegraphics[width=0.2\textwidth]{figures/norm_hist.png}
@@ -210,49 +168,116 @@ H(i) &=  \sum_{j = 0}^{i}h(j)
 	\caption{Two images showing a normal histogram and a cumulative histogram of it.}
 	\label{fig:hist_comp}
 \end{figure}
-\begin{figure}
-	\centering
-%	\includegraphics[width=0.2\textwidth]{figues/cum_hist_range.png}
-\end{figure}
-The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. Often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low and high end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$p_{min}, p_{max}$] \ref{fig:contrAdj}. To calculate the two quantiles we set a range for ignored pixels $q$. Using that range we can calculate the quantiles using the cumulative histogram:
-\begin{equation}
+The first two operations both rely on histograms to perform their operations. A histogram is a graphical representation of a distribution of numerical data\cite{histDesc}\cite{histDescWiki}. Figure \ref{fig:hist_comp} shows both a normal histogram and a cumulative histogram, both of which are used. The pseudocode for creating a \textbf{normal histogram} \ref{alg:norm_hist}, and the pseudocode for creating a \textbf{cumulative histogram} from the normal histogram \ref{alg:cum_hist} are included in the paper. The equation for deriving a cumulative histogram from a normal histogram can be simply written as: 
+
+\begin{equation}%equation for cumulative histogram
 \begin{aligned}
-&p'_{low} = \min\{i \| H(i) \geq m\cdot n \cdot q_{low}\}\\
-&p'_{high} = \max\{i \| H(h) \leq m\cdot n \cdot q_{high}\}
+H(i) &=  \sum_{j = 0}^{i}h(j) 
+& for(0 \leq i < K)
 \end{aligned}
 \end{equation}
-we get the ranges \includegraphics[width=0.2\textwidth]{figures/cum_hist_range.png}
-%TODO finish writing the contrast adjustment, refer to lecture, https://blackboard.aber.ac.uk/bbcswebdav/pid-688647-dt-content-rid-1002902_1/courses/CS24110_AB0_2015-16/CS241_L09_LQ.pdf is the link for the slides, first do histogram and cumulative histogram, which can be re-used for LAB EQ later, then add equation for contrast adjustment
 
-%other two operations, the Contrast Adjustment and the Luminosity equalisation, are both point-based histogram operations.
-%The proposed mid-mean alignment algorithm is a point operation that acts on each colour channel in the same manner.  To simplify the description of the operation, the algorithm is described in terms of operating upon a single grayscale image.  However, it is worth noting that the final algorithm works on an RGB image and so the described approach is repeated for each colour channel.  The described point operation takes as input a grayscale image $I(u, v)$ of size $m \times n$ and produces an enhanced image $I'(u, v)$ using a point operation function $f$.  That is:
 
-\noindent where $f$ is a homogeneous point operation and the geometry of $I'$ is exactly the same as $I$.
+\begin{figure}[h!] % normal and contrast adjusted histograms 
+	\centering
+	\subfigure[original] {
+		\includegraphics[width=0.2\textwidth]{figures/pre_contr_adj.png}
+	}
+	\subfigure[modified] {
+		\includegraphics[width=0.2\textwidth]{figures/post_contr_adj.png}
+	}
+	\caption{Two images showing a normal histogram before and after being contrast adjusted.}
+	\label{fig:contrAdjustedHist}
+\end{figure}
 
-The point operation is sought such that the mean of the modified image matches some given mean (i.e. $(K-1)/2$).  This ``ideal'' mean is represented as $\mu$ and for an $8$-bit image, $\mu = 127$.  If, $\overline{I(u, v)}$ represents the mean of image $I$, then the point operation, $f$, is sought such that
+The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. In images often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low $p'_{low}$ and high $p'_{high}$ end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$p_{min}, p_{max}$] \ref{fig:contrAdj}. To calculate the two quantiles we set a range for ignored pixels $q$. Using that range we can calculate the quantiles using the cumulative histogram:
 
-\begin{equation}
-	\overline{f(I(u, v))} = \mu
+\begin{equation} %equation for getting the P value for contr adjustment
+\begin{aligned}
+&p'_{low} = \min\{i | H(i) \geq m\cdot n \cdot q_{low}\}\\
+&p'_{high} = \max\{i \text{ } | H(h) \leq m\cdot n \cdot q_{high}\}
+\end{aligned}
 \end{equation}
 
-\noindent that is, the mean of modified image equals $127$.
-
-As shown in the sketch in Figure \ref{fig:sketch}, to perform this mean shift operation the mean of the image needs to be found and the difference between the actual mean and idea mean needs to be added to each pixel.  The actual mean, $\mu_{\mbox{\tiny{actual}}}$ is found via
-
+Given that q follows: 
 \begin{equation}
-	\mu_{\mbox{\tiny{actual}}} = \frac{1}{m \times n}\sum_{i=1}^{m \times n} p_{i}
+0 \leq q_{low}, q_{high} \leq 1, , q_{low} + q_{high} \leq 1
 \end{equation}
 
-\noindent where is a single pixel, $p_{i} \in I(u, v)$.  The ideal mean for an $8$-bit image is given as $\mu_{\mbox{\tiny{ideal}}} = 127$ and so the final point operation is given as
+After applying the formula we get the following ranges:
+\begin{center}
+	 \includegraphics[width=0.2\textwidth]{figures/cum_hist_range.png}
+	 \label{fig:cumulativeHistRange}
+\end{center}
+Then we loop through the pixels in the picture and apply the following equation to each pixel: 
 
+\begin{center}
+	\includegraphics[width=0.5\textwidth]{figures/contrAdjFormula.png}
+	\label{fig:contrAdjFormula}
+\end{center}
+
+\noindent We can see the difference in the histograms after adjusting the contrast \ref{fig:contrAdjustedHist}, the value range now occupies the whole spectrum of possible intensities.
+%\begin{equation}
+%\begin{aligned}
+%\[
+%	f(x) = 
+%	\begin{cases}
+%	p_{min}, &\text{for } p \leq p'_{low}\\
+%	p_{min} + (p - p'_{low})\cdot \frac{p_{max}-p_{min}}{p'_{high}-p'{low}}, &\text{for } p'_{low} < p < p'_{high}\\
+%	p_{max}, &\text{for } p \geq p'_{high}
+%	\end{cases}
+	
+%\]
+%\end{aligned}
+%\end{equation}
+
+%TODO do lab algorithm/equations/histogram equalisation
+
+The last operation of the algorithm is Histogram Equalisation on the Luminosity channel in LAB(CIELAB) colour space. In order to do that we first have to convert to LAB. This cannot be done directly, so the RGB picture has to be converted to XYZ colour\cite{rgbTOxyz} space first, and then converted to LAB\cite{xyzTOlab}. Then a normal and cumulative histograms have to be created on the Luminosity (L) channel, using the methods described earlier \ref{alg:norm_hist}, \ref{alg:cum_hist}. From the cumulative histogram we can equalise the pixel distribution, so that the histogram of the image approximates a uniform distribution. The goal of histogram equalisation is to shift the pixels in the image, so that the resulting cumulative histogram is approximately linear. \cite{automaticContrast} Figure \ref{fig:equal_hist} is showing the cumulative histogram of the L channel before equalisation, and after equalisation. Histogram equalisation on the cumulative histogram is done using the algorithm \ref{alg:equal_hist}, implementing the following equation: 
 \begin{equation}
-	f(I(u, v)) = I(u, v) + (\mu_{\mbox{\tiny{ideal}}} - \mu_{\mbox{\tiny{actual}}})
+f_{he}(p) = \lfloor H(p) \cdot \frac{K - 1}{mn}\rfloor
 \end{equation}
+\begin{algorithm}[h!] %histogram equalisation
+	\caption{Histogram Equalisation}
+	\label{alg:equal_hist}
+	\begin{algorithmic}[1]
+		\Function{HistogramEqualisation} {$I$} \Comment{where $K = 256$}
+		\State $CH =$ CumulativeHistogram(I)
+		\State $EQH = [0, K-1]$
+		\State
+		\For{\textbf{each} $v$ \textbf{in} $CH$} 
+		\State $EQH(v) = CH(v)\cdot\frac{K-1}{m \times n}$
+		\EndFor
+		\State 
+		\State
+		\Return $EQH$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+\begin{figure}
+		\centering
+		\subfigure[original] {
+			\includegraphics[width=0.2\textwidth]{figures/cum_labhist.png}
+		}
+		\subfigure[modified] {
+			\includegraphics[width=0.2\textwidth]{figures/equal_labhist.png}
+		}
+		\caption{Two images showing a normal histogram and the equalised histogram of it.}
+		\label{fig:equal_hist}
+\end{figure}
+%TODO histogram equalisation PseudoCode space == available ? write : dont write 
 
-Therefore, for each pixel in each channel in the image, the shift amount between the actual mean and the ideal mean is added and so the mean of the output image will be aligned so that it corresponds to the mid-level intensity value.
+The last operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The filter loops through the picture and acts on each pixel, but in the calculation the values of the neighbouring pixels are also included. The effect of is to reduce the noise in the picture, by applying a blur effect.\cite{averageFilter} The described filter operation acts on each channel in the same manner, using a filter operation function $f$. That is: 
+%TODO add pseudo code?
+
+\begin{equation} %equation that shows filter calculation
+I'(u, v) = f(\frac{1}{9}\cdot\sum_{j=-1}^{1}\sum_{i=-1}^{1}I(u+i, v+j))
+\end{equation}
 
 \subsection{Implementation}
+The detailed description section focuses on a single colour channel; however, since the algorithm needs to work on RGB images, the above methods needs to be repeated for each of the colour channels. The three enhancement operations are used in sequence in the image enhancement algorithm. Each of them will be looked at separately, in the order that they are applied in the algorithm, because if the order is changed, the final result will also be different. At the end of each of the operations, a clamping operation will be used to ensure that the modified intensities do not fall out of the displayable range.
 
+The first operation is Automatic Contrast Adjustment on the RGB channel. To achieve that the implementation needs to %FINISH THIS, also LAB equalisation and filter
 The description in the previous section is focussed on a single colour channel; however, since the algorithm needs to work on RGB images, the above method will need to be repeated for each colour channel.  To achieve this, the implementation will need to keep track of the actual mean values for the three colour channels separately and then ensure that the correct shift is applied to each colour channel.  As well as this, a clamping operation will need to be employed so that the modified intensities do not fall out of the displayable range of intensities.
 
 The pseudocode algorithm is given in Algorithm \ref{alg:mma}.  The function takes as input an RGB $m \times n$ image $I$ and then starts by producing a blank output image of the same dimensions (line 2).  The ideal means are then given and lines 4-10 loop through the input image summing each pixel channel and then dividing by the total number of pixels to produce the actual mean (note, this divide is an element-wise divide so that each element in the actual vector is divided by $m \times n$).   Once the actual mean is calculated, the shift is found for each channel by subtracting the actual mean from the ideal mean (line 11).  Finally, the output image is filled by adding the shift amount to each pixel value found in the input image making sure that the pixels are clamped into the range $[0,255]$.  The function returns the modified image (line 17).

@@ -43,9 +43,9 @@ public class DbtHistogramEqualisation extends Filter {
             }
         }
         String[] channels = {"R Channel", "G Channel", "B Channel"};
-        /*for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             new ShowHistogram(nHist[i].getArray(), channels[i]);
-        }*/
+        }
 
         // Calculate Cumulative Histogram for Red, Green and Blue Channel
         Histogram[] cHist = new CumulativeHistogram[3];

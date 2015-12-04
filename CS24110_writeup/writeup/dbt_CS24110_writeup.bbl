@@ -21,12 +21,6 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{averageFilter}
-\BIBentryALTinterwordspacing
-Average filter function. [Online]. Available:
-  \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-690794-dt-content-rid-1006217_1/courses/CS24110_AB0_2015-16/C241_L12_LQ.pdf}
-\BIBentrySTDinterwordspacing
-
 \bibitem{histDesc}
 \BIBentryALTinterwordspacing
 Histogram description. [Online]. Available:
@@ -42,6 +36,24 @@ Histogram. [Online]. Available: \url{https://en.wikipedia.org/wiki/Histogram}
 \BIBentryALTinterwordspacing
 Automatic contrast adjustment. [Online]. Available:
   \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-688647-dt-content-rid-1002902_1/courses/CS24110_AB0_2015-16/CS241_L09_LQ.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{rgbTOxyz}
+\BIBentryALTinterwordspacing
+Colour space conversion rgb to xyz. [Online]. Available:
+  \url{http://www.easyrgb.com/index.php?X=MATH&H=02#text2}
+\BIBentrySTDinterwordspacing
+
+\bibitem{xyzTOlab}
+\BIBentryALTinterwordspacing
+Colour space conversion xyz to lab. [Online]. Available:
+  \url{http://www.easyrgb.com/index.php?X=MATH&H=07#text7}
+\BIBentrySTDinterwordspacing
+
+\bibitem{averageFilter}
+\BIBentryALTinterwordspacing
+Average filter function. [Online]. Available:
+  \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-690794-dt-content-rid-1006217_1/courses/CS24110_AB0_2015-16/C241_L12_LQ.pdf}
 \BIBentrySTDinterwordspacing
 
 \bibitem{JavaWR}
