@@ -56,6 +56,18 @@ Average filter function. [Online]. Available:
   \url{https://blackboard.aber.ac.uk/bbcswebdav/pid-690794-dt-content-rid-1006217_1/courses/CS24110_AB0_2015-16/C241_L12_LQ.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{labTOxyz}
+\BIBentryALTinterwordspacing
+Colour space conversion lab to xyz. [Online]. Available:
+  \url{http://www.easyrgb.com/index.php?X=MATH&H=08#text8}
+\BIBentrySTDinterwordspacing
+
+\bibitem{xyzTOrgb}
+\BIBentryALTinterwordspacing
+Colour space conversion xyz to rgb. [Online]. Available:
+  \url{http://www.easyrgb.com/index.php?X=MATH&H=01#text1}
+\BIBentrySTDinterwordspacing
+
 \bibitem{JavaWR}
 ``{WritableRaster, Oracle Java SE7},''
   \url{http://docs.oracle.com/javase/7/docs/api/java/awt/image/WritableRaster.html},

@@ -16,7 +16,7 @@ public class CumulativeHistogram extends NormalHistogram implements Histogram {
     private void calculateCumulativeHist() {
         this.array = h.getArray();
         for(int i = 1; i < array.length; i++){
-           array[i] += array[i-1];
+            array[i] += array[i-1];
         }
     }
     @Override

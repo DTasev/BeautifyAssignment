@@ -2,28 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cbbd5ff-bb6f-47b1-9e04-2ee5c968ecb3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/edgeEnhancement/EdgeEnhancement.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/flowchart.pdf" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilter.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.pdf" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.synctex.gz" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/cum_hist.png" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/cum_hist.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/cum_hist_range.png" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/cum_hist_range.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/flowchart.png" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/flowchart.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/norm_hist.png" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/norm_hist.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_01_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_01_changed.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_02_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_02_changed.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_03_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_03_changed.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_04_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_04_changed.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_05_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_05_changed.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/Beautify.class" afterPath="$PROJECT_DIR$/out/production/beautify/Beautify.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/Filter.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/Filter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/biblio.bib" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/biblio.bib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.aux" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.aux" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.bbl" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.bbl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.tex" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Beautify.java" afterPath="$PROJECT_DIR$/src/Beautify.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilterSelect.java" />
     </list>
     <ignored path="beautify.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,20 +46,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DbtLABeqAndContrastAdjustment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java">
+      <file leaf-file-name="Beautify.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Beautify.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+              <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbtContrastAdjustment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DbtLABeqAndContrastAdjustment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultBeautifyFilters.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/core/DefaultBeautifyFilters.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbtEnhancementFilterSelect.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilterSelect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kateGaussianFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/kateGaussian/kateGaussianFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbtEnhancementFilter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5440806">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#670#694#0" expanded="true" />
+                <element signature="e#913#914#0" expanded="true" />
+                <element signature="e#1004#1005#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NormalHistogram.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/normal/NormalHistogram.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#632#633#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbtContrastAdjustment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2972293">
+            <state vertical-scroll-proportion="0.0">
               <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
               <folding />
             </state>
@@ -70,27 +137,7 @@
         <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/averageFilter/AverageFilter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MedianFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/medianFilter/MedianFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbtLABHistogramEqualisation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+              <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -118,13 +165,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/kateEqualisation/KateSelect.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/kateEqualisation/KateEqualise.java" />
-        <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/gaussianFilter/GaussianFilter.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABHistogramEqualisation.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABHistEqSelect.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndCASelectImage.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndCASelect.java" />
-        <option value="$PROJECT_DIR$/src/Beautify.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/averageFilter/AverageFilter.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/kateGaussian/kateGaussianFilter.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/medianFilter/MedianFilter.java" />
@@ -132,9 +177,12 @@
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.java" />
-        <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/edgeEnhancement/EdgeEnhancement.java" />
         <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java" />
+        <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" />
+        <option value="$PROJECT_DIR$/src/Beautify.java" />
+        <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" />
+        <option value="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java" />
       </list>
     </option>
   </component>
@@ -325,7 +373,85 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="kateGaussian" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="histogramEqualisationLAB" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gaussianFilter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beautify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dbtEnhancement" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -839,16 +965,16 @@
       <workItem from="1449061850901" duration="13520000" />
       <workItem from="1449141851070" duration="4917000" />
       <workItem from="1449159485475" duration="9650000" />
-      <workItem from="1449228748698" duration="9270000" />
+      <workItem from="1449228748698" duration="21561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37357000" />
+    <option name="totallyTimeSpent" value="49648000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -857,12 +983,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.47634068" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.46823528" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24304539" sideWeight="0.5236593" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24304539" sideWeight="0.5317647" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -998,7 +1125,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.java">
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilterSelect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -1081,38 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7632242">
-          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="121" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/normal/NormalHistogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4156171">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndCASelect.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34256926">
@@ -1121,42 +1216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Beautify.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="46" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisation/DbtHistogramEqualisation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.057934508">
           <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/gaussianFilter/GaussianFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.042821158">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/kateGaussian/kateGaussianFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31486145">
-          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/averageFilter/AverageFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1185,14 +1248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80352646">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogramEqualisationLAB/DbtLABHistogramEqualisation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1201,19 +1256,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java">
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/contrastAdjustment/DbtContrastAdjustment.java">
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2972293">
-          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilterSelect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4669967">
+          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4282116">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Beautify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="55" selection-start-line="93" selection-start-column="55" selection-end-line="93" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/averageFilter/AverageFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/normal/NormalHistogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#632#633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/kateGaussian/kateGaussianFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/gaussianFilter/GaussianFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6347607">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="45" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/core/DefaultBeautifyFilters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5440806">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#670#694#0" expanded="true" />
+            <element signature="e#913#914#0" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -12,6 +12,7 @@
 import uk.ac.aber.beautify.core.BeautifyKernel;
 import uk.ac.aber.beautify.filters.brightness.DbtBrightnessFilterSelect;
 import uk.ac.aber.beautify.filters.contrastAdjustment.DbtContrastAdjSelect;
+import uk.ac.aber.beautify.filters.dbtEnhancement.DbtEnhancementFilterSelect;
 import uk.ac.aber.beautify.filters.grayscale.DbtGrayscaleFilterSelect;
 import uk.ac.aber.beautify.filters.histogram.kateEqualisation.KateSelect;
 import uk.ac.aber.beautify.filters.histogramEqualisation.DbtHistEqSelect;
@@ -34,7 +35,7 @@ public class Beautify {
         String input = new String();
 
         int count = 0; // print menu every 5 times
-        beautify.setFilterSet(new DbtLABeqAndCASelect());
+        beautify.setFilterSet(new DbtEnhancementFilterSelect());
         while (input != "x") {
             if (count % 5 == 0)
                 printMenu();
@@ -76,7 +77,8 @@ public class Beautify {
                     beautify.setFilterSet(new DbtLABeqAndCASelect());
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    beautify.setFilterSet(new DbtEnhancementFilterSelect());
+                    System.out.println("Final Enhancement Filter Selected");
                     break;
             }
         }

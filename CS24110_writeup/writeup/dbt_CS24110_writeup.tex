@@ -23,7 +23,7 @@
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
 %WRITE CORRECT BLUR FILTER
-\title{CS24110 Assignment: Automatic Enhancement of Digital Images via Histogram Equalisation on LAB Colour Space, Contrast Enhancement on RGB and Average Value Blur Filter}
+\title{CS24110 Assignment: Automatic Enhancement of Digital Images via Automatic Contrast Adjustment on RGB, Histogram Equalisation on LAB Colour Space, and Average Value Blur Filter}
 
 
 % author names and affiliations
@@ -123,7 +123,8 @@ The idea behind the proposed automatic enhancement approach is to do a contrast 
 	\caption{Normal Histogram}
 	\label{alg:norm_hist}
 	\begin{algorithmic}[1]
-		\Function{NormalHistogram} {$I$} \Comment{where $| I | = m \times n$, \\ $K = 256$}
+		\Function{NormalHistogram} {$I$}\Comment{where $| I | = m \times n$, \\ $K = $ MAX value of the colour space, 256 for RGB, 101 for LAB's L channel}
+		\State
 		\State $H = [0, K-1]$
 		\State 
 		\For{\textbf{each} $p$ \textbf{in} $I$} 
@@ -139,8 +140,8 @@ The idea behind the proposed automatic enhancement approach is to do a contrast 
 	\caption{Cumulative Histogram}
 	\label{alg:cum_hist}
 	\begin{algorithmic}[1]
-		\Function{CumulativeHistogram} {$I$} \Comment{where $K = 256$}
-
+		\Function{CumulativeHistogram} {$I$}\\ \Comment{where $K = $ MAX value of the colour space, 256 for RGB, 101 for LAB's L channel}
+		\State
 		\State $H = $ NormalHistogram()
 		\State $CH = [0, K-1]$
 		\State
@@ -176,8 +177,6 @@ H(i) &=  \sum_{j = 0}^{i}h(j)
 & for(0 \leq i < K)
 \end{aligned}
 \end{equation}
-
-
 \begin{figure}[h!] % normal and contrast adjusted histograms 
 	\centering
 	\subfigure[original] {
@@ -193,27 +192,27 @@ H(i) &=  \sum_{j = 0}^{i}h(j)
 The second operation, the Contrast Adjustment, is performed on the image in RGB colour space, so no conversion is needed. In images often the full range of values isn't used. Automatic contrast adjustment remaps the intensity values so that they occupy the full range of possible values\cite{automaticContrast}. We have to identify two quantiles at the low $p'_{low}$ and high $p'_{high}$ end of the intensity spectrum, and map the pixel values inside them to the extreme values, the other pixels are then linearly mapped to the interval [$p_{min}, p_{max}$] \ref{fig:contrAdj}. To calculate the two quantiles we set a range for ignored pixels $q$. Using that range we can calculate the quantiles using the cumulative histogram:
 
 \begin{equation} %equation for getting the P value for contr adjustment
-\begin{aligned}
-&p'_{low} = \min\{i | H(i) \geq m\cdot n \cdot q_{low}\}\\
-&p'_{high} = \max\{i \text{ } | H(h) \leq m\cdot n \cdot q_{high}\}
+\begin{aligned}\label{eq:contrAdjPlowNPhigh}
+&p'_{low} = \min\{i | CH(i) \geq m\cdot n \cdot q_{low}\}\\
+&p'_{high} = \max\{i \text{ } | CH(h) \leq m\cdot n \cdot q_{high}\}
 \end{aligned}
 \end{equation}
 
-Given that q follows: 
-\begin{equation}
-0 \leq q_{low}, q_{high} \leq 1, , q_{low} + q_{high} \leq 1
+\noindent Given that q follows: 
+\begin{equation}\label{eq:contrAdjQcalc}
+0 \leq q_{low}, q_{high} \leq 1, q_{low} + q_{high} \leq 1
 \end{equation}
 
-After applying the formula we get the following ranges:
+\noindent After applying the formula to the cumulative histogram we will get ranges, which can be visually represented like this:
 \begin{center}
 	 \includegraphics[width=0.2\textwidth]{figures/cum_hist_range.png}
 	 \label{fig:cumulativeHistRange}
 \end{center}
-Then we loop through the pixels in the picture and apply the following equation to each pixel: 
+Then we loop through the pixels in the picture and apply the following function $f$ to each pixel: 
 
 \begin{center}
 	\includegraphics[width=0.5\textwidth]{figures/contrAdjFormula.png}
-	\label{fig:contrAdjFormula}
+	\label{fig:contrAdjFunc}
 \end{center}
 
 \noindent We can see the difference in the histograms after adjusting the contrast \ref{fig:contrAdjustedHist}, the value range now occupies the whole spectrum of possible intensities.
@@ -231,17 +230,21 @@ Then we loop through the pixels in the picture and apply the following equation 
 %\end{aligned}
 %\end{equation}
 
-%TODO do lab algorithm/equations/histogram equalisation
 
-The last operation of the algorithm is Histogram Equalisation on the Luminosity channel in LAB(CIELAB) colour space. In order to do that we first have to convert to LAB. This cannot be done directly, so the RGB picture has to be converted to XYZ colour\cite{rgbTOxyz} space first, and then converted to LAB\cite{xyzTOlab}. Then a normal and cumulative histograms have to be created on the Luminosity (L) channel, using the methods described earlier \ref{alg:norm_hist}, \ref{alg:cum_hist}. From the cumulative histogram we can equalise the pixel distribution, so that the histogram of the image approximates a uniform distribution. The goal of histogram equalisation is to shift the pixels in the image, so that the resulting cumulative histogram is approximately linear. \cite{automaticContrast} Figure \ref{fig:equal_hist} is showing the cumulative histogram of the L channel before equalisation, and after equalisation. Histogram equalisation on the cumulative histogram is done using the algorithm \ref{alg:equal_hist}, implementing the following equation: 
+The last operation of the algorithm is Histogram Equalisation on the Luminosity channel in LAB(CIELAB) colour space. It adjusts the contrast and brightness to appear as they would in a well exposed picture. As we can see in Figure \ref{fig:luminDiffHist}, if the brightness of the picture is low, i.e. the picture is dim, the Luminosity channel is concentrated in the lower end of the spectrum. If the picture is bright, it is concentrated in the high end of the spectrum. In order to equalise the Luminosity channel, we first have to convert the image to LAB. This cannot be done directly, so the RGB picture has to be converted to XYZ colour\cite{rgbTOxyz} space first, and then converted to LAB\cite{xyzTOlab}. Then a normal and cumulative histograms have to be created on the Luminosity (L) channel, using the methods described earlier \ref{alg:norm_hist}, \ref{alg:cum_hist}. From the cumulative histogram we can equalise the pixel distribution, so that the histogram of the image approximates a uniform distribution. The goal of histogram equalisation is to shift the pixels in the image, so that the resulting cumulative histogram is approximately linear. \cite{automaticContrast} Figure \ref{fig:equal_hist} is showing the cumulative histogram of the L channel before equalisation, and after equalisation. Histogram equalisation on the cumulative histogram is done using the algorithm \ref{alg:equal_hist}, implementing the following equation: 
 \begin{equation}
-f_{he}(p) = \lfloor H(p) \cdot \frac{K - 1}{mn}\rfloor
+f_{he}(p) = \lfloor CH(p) \cdot \frac{K - 1}{mn}\rfloor
+\end{equation}
+\noindent After the Equalised Histogram has been created, we have to loop through each pixel in the image and set its new value, which is stored in the Equalised Histogram, at the position of the pixel's current value: 
+\begin{equation}\label{eq:histEqPixel}
+P(v) = EQH(P(v))
 \end{equation}
 \begin{algorithm}[h!] %histogram equalisation
 	\caption{Histogram Equalisation}
 	\label{alg:equal_hist}
 	\begin{algorithmic}[1]
-		\Function{HistogramEqualisation} {$I$} \Comment{where $K = 256$}
+		\Function{HistogramEqualisation} {$I$}\\ \Comment{where $K = $ MAX value of the colour space, 256 for RGB, 101 for LAB's L channel}
+		\State
 		\State $CH =$ CumulativeHistogram(I)
 		\State $EQH = [0, K-1]$
 		\State
@@ -267,22 +270,23 @@ f_{he}(p) = \lfloor H(p) \cdot \frac{K - 1}{mn}\rfloor
 \end{figure}
 %TODO histogram equalisation PseudoCode space == available ? write : dont write 
 
-The last operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The filter loops through the picture and acts on each pixel, but in the calculation the values of the neighbouring pixels are also included. The effect of is to reduce the noise in the picture, by applying a blur effect.\cite{averageFilter} The described filter operation acts on each channel in the same manner, using a filter operation function $f$. That is: 
+The last operation in the algorithm, the Average Value Blur is a filter, because it does not rely solely on a single pixel's value. The filter loops through the picture and acts on each pixel, but in the calculation the values of the neighbouring pixels are also included. Its effect is to reduce the noise in the picture, by applying a blur effect.\cite{averageFilter} The strength of the blur, however, heavily depends on the size of the picture. Small pictures (i.e. 640x480 resolution) will have very strong blur, to the point of ruining the picture, and very big pictures (i.e. 1920x1020 resolution) will have nearly no visible change. The described filter operation acts on each channel in the same manner, using a filter operation function $f$. That is: 
 %TODO add pseudo code?
 
-\begin{equation} %equation that shows filter calculation
+\begin{equation}\label{eq:avgFilter} %equation that shows filter calculation
 I'(u, v) = f(\frac{1}{9}\cdot\sum_{j=-1}^{1}\sum_{i=-1}^{1}I(u+i, v+j))
 \end{equation}
 
 \subsection{Implementation}
 The detailed description section focuses on a single colour channel; however, since the algorithm needs to work on RGB images, the above methods needs to be repeated for each of the colour channels. The three enhancement operations are used in sequence in the image enhancement algorithm. Each of them will be looked at separately, in the order that they are applied in the algorithm, because if the order is changed, the final result will also be different. At the end of each of the operations, a clamping operation will be used to ensure that the modified intensities do not fall out of the displayable range.
 
-The first operation is Automatic Contrast Adjustment on the RGB channel. To achieve that the implementation needs to %FINISH THIS, also LAB equalisation and filter
-The description in the previous section is focussed on a single colour channel; however, since the algorithm needs to work on RGB images, the above method will need to be repeated for each colour channel.  To achieve this, the implementation will need to keep track of the actual mean values for the three colour channels separately and then ensure that the correct shift is applied to each colour channel.  As well as this, a clamping operation will need to be employed so that the modified intensities do not fall out of the displayable range of intensities.
+The first operation is \textbf{Automatic Contrast Adjustment} on the RGB channel. To achieve that the implementation will create and store a Normal Histogram \ref{alg:norm_hist} for each of the channels. When the Normal Histograms have been calculated, we can use them to create the Cumulative Histograms \ref{alg:cum_hist}, repeated for each of the channels. Then we have to pick appropriate $q_{low}$ and $q_{high}$, following the equation \ref{eq:contrAdjQcalc}. Now we can calculate $p'_{low}$ and $p'_{high}$ for each of the colour channels using the Cumulative Histograms of the channels \ref{eq:contrAdjPlowNPhigh}. After we have calculated $p'_{low}$ and $p'_{high}$, we apply the function \ref{fig:contrAdjFunc} to each pixel to determine it's new value. After the Contrast Adjusted image is produced, we perform the second operation from the algorithm, the Luminosity Histogram Equalisation.
 
-The pseudocode algorithm is given in Algorithm \ref{alg:mma}.  The function takes as input an RGB $m \times n$ image $I$ and then starts by producing a blank output image of the same dimensions (line 2).  The ideal means are then given and lines 4-10 loop through the input image summing each pixel channel and then dividing by the total number of pixels to produce the actual mean (note, this divide is an element-wise divide so that each element in the actual vector is divided by $m \times n$).   Once the actual mean is calculated, the shift is found for each channel by subtracting the actual mean from the ideal mean (line 11).  Finally, the output image is filled by adding the shift amount to each pixel value found in the input image making sure that the pixels are clamped into the range $[0,255]$.  The function returns the modified image (line 17).
+In order to create a \textbf{histogram} on the \textbf{Luminosity channel}, we have to convert each pixel to LAB colour space, before performing any operations. As this cannot be done directly from RGB, we first need to convert it into XYZ \cite{rgbTOxyz} colour space, and then into LAB \cite{xyzTOlab} colour space. The implementation has to loop through each pixel, converting it to LAB colour space, and creating a Normal Histogram \ref{alg:norm_hist} of the Luminosity (L channel for short). When the Normal Histogram is calculated, a Cumulative Histogram \ref{alg:cum_hist} is created from it, and finally an equalisation \ref{alg:equal_hist} is performed on the Cumulative Histogram. After the Equalised Histogram has been completed, the implementation loops through all of the pixels, converting each one to LAB, and then adjusts the intensities \ref{eq:histEqPixel}, using the new values from the Equalised Histogram. When the pixels' values are adjusted, the implementation has to convert the pixel from LAB back to XYZ \cite{labTOxyz}, and then to RGB \cite{xyzTOrgb}. A clamping operation is performed as well, before finally setting the new value of the pixel.
 
-The implementation described in Algorithm 1 requires two loops through the image but using an efficient pixel accessing mechanism (i.e. Java's \texttt{WritableRaster} \cite{JavaWR}) then the run-time for this operation should be minimal.
+The last operation performed by the enhancement algorithm is the \textbf{Average Value Blur} filter. It works in RGB colour space, so it does not need to convert the picture. The filter is very easy to implement, it calculates the average value of the pixel, plus the surrounding pixels \ref{eq:avgFilter}. After it loops through every pixel, a blurred image is produced, which is also the final product image of the algorithm.
+
+This Image Enhancement algorithm is very expensive to compute, and will be visibly slow when executed on older computers. It's implementation can be optimised by using an efficient pixel accessing mechanism, such as Java's \textit{WritableRaster}, but it's run time will still be noticeably long. This is due to combining multiple operations, each of them acting on the \textit{whole} image in sequence.
 
 \begin{figure*}[t]
 	\centering
@@ -316,65 +320,60 @@ The implementation described in Algorithm 1 requires two loops through the image
 	\subfigure[Image 5 Modified]{
 		\includegraphics[width=0.225\textwidth]{figures//images//image_05_changed.jpg}
 	} \\
-\caption{Results of performing the mean alignment algorithm on each of the five test images.  For the first two images (a, c), the algorithm produces washed out results (b, d).  Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h).  The effect of the algorithm is least noticeable on Image 5 (i, j).}
+\caption{Results of performing the mean alignment algorithm on each of the five test images.  For the first two images (a, c), the algorithm produces washed out results (b, d).  Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h).  The effect of the algorithm is least noticeable on Image 5 (i, j). 
+	Results of performing the described image enhancement algorithm on each of the five test images. The effect of the algorithm is noticeable in all of the images, they are all brighter and the blur is visible. For images (e, g) the images produced do not look natural (f, h). The algorithm's effect on image (a) has brought in colours in the sky that are not in the original picture (b). For images (c, i) the algorithm produced more natural-looking results. }
 \label{fig:results}
 \end{figure*}
 
 \begin{figure}[b]
 	\centering
 	\subfigure[original] {
-		\includegraphics[width=0.2\textwidth]{figures//image01_hist.png}
+		\includegraphics[width=0.2\textwidth]{figures/image_01_pre_enh_combined_hist.png}
 	}
 	\subfigure[modified] {
-		\includegraphics[width=0.2\textwidth]{figures//image_01_modified_hist.png}
+		\includegraphics[width=0.2\textwidth]{figures/image_01_post_enh_combined_hist.png}
 	}
-\caption{Average RGB histograms from image 1 (Figure \ref{fig:results} (a, b)).  The washed out effect seen in Figure \ref{fig:results} (b) occurs because all of the pixels highlighted in the orange region are mapped to maximum intensity.  Also note the range of unfilled intensities in the darker region of the modified image (green bar).}
+\caption{Average RGB histograms from image 1 (Figure \ref{fig:results} (a, b)).  The unnatural colours occurs, because the original pixel intensity distribution is mostly focused in a particular range, surrounded by a black square, but after contrast adjustment the full range is used, bringing out unnatural colours.}
 \label{fig:image01_hists}
+\end{figure}
+
+\begin{figure}[b]
+	\centering
+	\subfigure[low brightness] {
+		\includegraphics[width=0.2\textwidth]{figures/low_brightness_hist.png}
+	}
+	\subfigure[high brightness] {
+		\includegraphics[width=0.2\textwidth]{figures/high_brightness_hist.png}
+	}
+	\caption{Luminosity channel histograms of a low brightness picture (left) and high brightness picture (right).}
+	\label{fig:luminDiffHist}
 \end{figure}
 
 \section{Results}
 \label{sec:results}
+%ADD blur might be too much on small pictures, might be too weak on large
+The proposed image enhancement method is tested on the five provided images. The results of performing the algorithm is shown in Figure \ref{fig:results}.
 
-The proposed method is tested on the provided four images.  The results of performing the mid-mean alignment algorithm on each of these images are shown in Figure \ref{fig:results}.
+The image enhancement algorithm causes a change in all of the images. 
+The least change is seen in Image 5 (Figure \ref{fig:results} (i, j)). The most natural looking images are Image 2 and Image 5; in the rest of the images there are large colour changes, bringing out unnatural colours. The blur from the filter is noticeable in all of the images.
 
-In all of the images the algorithm causes a change in the modified image, with the least significant change being seen in Image 5 (Figure \ref{fig:results} (i, j)).  Although the change is least significant for Image 5, it is only Image 5 and Image 4 that have natural looking results; all the other images, when modified, appear either washed out or with large colour changes.  
+The modified version of Images 1, 3 and 4, all have unnatural colours appear. This is due to the Automatic Contrast Adjustment remapping the images to use all of the available intensities, when the original picture pixels' intensity was mostly concentrated on a particular range. This can be seen when looking at the histograms. Figure \ref{fig:image01_hists} shows the histogram before and after processing Image 1. We can see how before the algorithm, the image's pixel intensity values were focused mostly in a particular range, but after being processed by the algorithm, they are spread out, bringing out colours, that would not be very well visible in the original picture.
 
-The modified versions of Images 1 and 2 both appear washed out.  This can be explained when the histograms are examined.  Figure \ref{fig:image01_hists} shows the histogram before and after processing for Image 1.  The washed out effect occurs because all of the pixels within the shaded orange region in the original image are mapped to maximum intensity in the final image.  As well as this, the full range of intensities are not used in the final image so that image will appear to have low contrast.  This identifies an important property of the proposed algorithm, although it only performs a brightness adjustment, the algorithm can also modify contrast.  This is due to the fact that large shifts in intensity (such as those seen in Figure \ref{fig:image01_hists}) will cause a large block of pixels to be mapped to the extreme values.  The remaining pixels will be shifted as normal but the range of intensities used will be decreased thus leading to a decrease in contrast.
+The second operation in the algorithm, the Histogram Equalisation on the Luminosity channel, is responsible for the pictures looking clearer than the original, and the brightness change that can be seen in all of them. Images 1 and 2 have had their brightness increased after being processed, due to the original picture being dim. Images 4 and 5, have only a slight difference from the original picture's brightness. However, since they appear to be a bit washed out in the original pictures, after equalisation it can be see that they are clearer and less washed out. The same effect appears on Image 3, but it is even weaker. Images 3, 4 and 5 have not been significantly changed by the Luminosity channel Histogram Equalisation, because the original pictures are fairly well exposed and have good brightness.
 
-\begin{table}[t]
-\centering
-\normalsize{
-\begin{tabular}{ l c c c c}
+The final operation in the algorithm, the Average Value Blur filter is responsible for the visible blur in the pictures. The blur might be a little bit too strong than desirable, because the pictures are small in size.
 
-	\toprule
-  Image	&	$s_{\mbox{\tiny{red}}}$	& $s_{\mbox{\tiny{green}}}$	& $s_{\mbox{\tiny{blue}}}$  & $\delta s$\\
-  \midrule
-  Image 1	&      $+53$				& $+49$					& $+46$ 				& $7$\\
-  Image 2	&      $+63$				& $+58$					& $+55$ 				& $8$ \\	
-  Image 3	&      $+49$				& $+25$					& $-21$ 				& $70$\\
-  Image 4	&      $-14$				& $-24$					& $-31$ 				& $17$ \\
-  Image 5	&      $+12$				& $-1$					& $+4$ 				& $13$\\
-  \bottomrule
-  \vspace{5pt}
-\end{tabular}
-}
-\caption{The different shifts for each colour channel for each image.  The larger the shift the greater the effect; the larger the difference in shifts between each colour channel the greater the colour changes will be.}
-\label{tbl:shifts}
-\end{table}
-
-The colour change that is seen in Image 3 (Figure \ref{fig:results} (e, f)) occurs because the shifting operation has a larger effect on a single colour channel.  The proposed method shifts each colour channel by a separate amount, so if, say, the green channel has a larger shift than the red and blue channels then the modified image will display a marked change in the green component (either more green or less green).  This effect can be further understood by examining the shift amounts for each colour channel for each image.   Table \ref{tbl:shifts} shows the shift amounts for each colour channel for each image as well as the size of the shift (measured as the range of the shift values for that image).  As can be seen, the cases when there is a large $\delta s$ correspond to cases when there is a significant change in colour.   Similarly, cases where there is a large shift even though there is a small $\delta s$, correspond to cases where there are contrast changes.
-
-
-
-% [53, 49, 46]
-%[63, 58, 55]
-%[49, 25, -21]
-%[-14, -24, -31]
-%[12, -1, 4]
+%ADD Luminosity equalisation changes the brightness of all the pictures and adjusts it to such brightness which a well exposed picture would have. if it's too bright it will bring the brightness down, but no such cases here
 
 \section{Discussion \& Conclusions}
 \label{sec:discussion}
 
+The results show that the proposed method works best when the picture isn't heavily focused on one colour, causing the Automatic Contrast Adjustment to bring out unnatural colours, that are not seen in the original pictures. If pictures appear to be dim, or washed out, the method will adjust them to appear as if they were well exposed, brighter/less washed out. 
+The Average Value Blur filter can be very strong on small pictures, reducing their quality rather than enhancing it, and unnoticeable on large pictures, making it rather unnecessary. The picture sizes are small, that is why the blur effect is a bit stronger than what would be optimal.
+
+From that we can conclude that the algorithm works well with pictures that do not have a single dominating colour. If the pictures happen to be underexposed and appear to be dim or overexposed and washed out, the method will work well, and will properly adjust them. However having the Average Blue Filter's usefulness depend on the picture size is impractical, since we might not have that information.
+
+That makes it one of the areas in which this method can be improved. A different blur filter should be added, one which is consistent and independent of picture size. Another area for improvement might be additional brightness adjustment
 The results show that the proposed method works best when there is a small shift observed for each colour channel and the difference in shifts between each colour channel is minimal.  If the shift amount is large, then it is likely that the image will appear washed out and the image's contrast will change.  Also, if the shift amount is very different for each colour channel, then the modified image will contain a very different colour distribution than the original image.   
 
 Therefore, a few key properties of the algorithm can be noted:

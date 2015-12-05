@@ -85,7 +85,7 @@ public abstract class Filter {
 		int[] rgbVals = {(rawValue & 0xff0000) >> 16, (rawValue & 0x00ff00) >> 8, (rawValue & 0x0000ff)};
 		return rgbVals;
 	}
-	public static int[] grabRGBValues(Raster inputRaster, int u, int v){
+	public int[] grabRGBValues(Raster inputRaster, int u, int v){
 		int[] inputPixels = new int[3];
 		inputRaster.getPixel(u, v, inputPixels);
 		return inputPixels;

@@ -1,4 +1,4 @@
-package uk.ac.aber.beautify.filters.enhancement;
+package uk.ac.aber.beautify.filters.dbtEnhancement;
 
 import uk.ac.aber.beautify.core.BeautifyFilters;
 import uk.ac.aber.beautify.filters.Filter;
