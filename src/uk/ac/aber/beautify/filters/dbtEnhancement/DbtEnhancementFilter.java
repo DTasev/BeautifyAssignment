@@ -36,7 +36,6 @@ public class DbtEnhancementFilter extends Filter {
 		// perform contrast adjustment on image
 		outputRaster = contrastAdjustment(outputRaster);
 		outputRaster = labEqualisation(outputRaster);
-
 		// perform LAB equalisation on image
 
 		// perform filtering function on image
@@ -94,8 +93,8 @@ public class DbtEnhancementFilter extends Filter {
 		Histogram blueCumuHist = new CumulativeHistogram(blueNormHist);
 
 		// set q(LOW) and q(HIGH) ranges
-		float qlow = 0.005f;
-		float qhigh = 0.005f;
+		float qlow = 0.1f;
+		float qhigh = 0.1f;
 
 		// containers for p(LOW) and p(HIGH) for each channel
 		int[] plow = new int[3];

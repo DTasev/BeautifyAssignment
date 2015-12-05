@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cbbd5ff-bb6f-47b1-9e04-2ee5c968ecb3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilter.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.pdf" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.synctex.gz" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.synctex.gz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_01_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_01_changed.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_02_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_02_changed.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_03_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_03_changed.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_04_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_04_changed.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_05_changed.jpg" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/figures/images/image_05_changed.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/Beautify.class" afterPath="$PROJECT_DIR$/out/production/beautify/Beautify.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/Filter.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/Filter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.class" afterPath="$PROJECT_DIR$/out/production/beautify/uk/ac/aber/beautify/filters/labEqualiseAndRGBContrastAdjust/DbtLABeqAndContrastAdjustment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.aux" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.aux" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.bbl" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.bbl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.tex" afterPath="$PROJECT_DIR$/CS24110_writeup/writeup/dbt_CS24110_writeup.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Beautify.java" afterPath="$PROJECT_DIR$/src/Beautify.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/Filter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/histogram/cumulative/CumulativeHistogram.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/enhancement/DbtEnhancementFilterSelect.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilterSelect.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java" afterPath="$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java" />
     </list>
     <ignored path="beautify.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,8 +78,8 @@
       <file leaf-file-name="DbtEnhancementFilter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5440806">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6599496">
+              <caret line="96" column="25" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#670#694#0" expanded="true" />
@@ -965,16 +944,16 @@
       <workItem from="1449061850901" duration="13520000" />
       <workItem from="1449141851070" duration="4917000" />
       <workItem from="1449159485475" duration="9650000" />
-      <workItem from="1449228748698" duration="21561000" />
+      <workItem from="1449228748698" duration="23062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49648000" />
+    <option name="totallyTimeSpent" value="51149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -983,7 +962,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.46823528" order="0" side_tool="false" content_ui="combo" />
@@ -1348,8 +1327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uk/ac/aber/beautify/filters/dbtEnhancement/DbtEnhancementFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5440806">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6599496">
+          <caret line="96" column="25" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#670#694#0" expanded="true" />
