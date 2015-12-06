@@ -2,6 +2,7 @@ package uk.ac.aber.beautify.filters.dbtEnhancement;
 
 import uk.ac.aber.beautify.filters.Filter;
 import uk.ac.aber.beautify.filters.averageFilter.AverageFilter;
+import uk.ac.aber.beautify.filters.gaussianFilter.GaussianFilter;
 import uk.ac.aber.beautify.filters.histogram.Histogram;
 import uk.ac.aber.beautify.filters.histogram.ShowHistogram;
 import uk.ac.aber.beautify.filters.histogram.cumulative.CumulativeHistogram;
@@ -35,11 +36,12 @@ public class DbtEnhancementFilter extends Filter {
 		//calculateHistogram(outputRaster, "Pre enhancement");
 		// perform contrast adjustment on image
 		outputRaster = contrastAdjustment(outputRaster);
-		outputRaster = labEqualisation(outputRaster);
 		// perform LAB equalisation on image
+		outputRaster = labEqualisation(outputRaster);
 
 		// perform filtering function on image
 		outputRaster = new AverageFilter(outputImage, outputRaster).runRaster();
+
 		//calculateHistogram(outputRaster, "Post enhancement");
 		// set new image raster
 		outputImage.setData(outputRaster);
@@ -48,6 +50,8 @@ public class DbtEnhancementFilter extends Filter {
 
 	private void calculateHistogram(WritableRaster outputRaster, String text) {
 		Histogram redNormHist = new NormalHistogram(0, 255, 1);
+		Histogram gnh = new NormalHistogram(0, 255, 1);
+		Histogram bnh = new NormalHistogram(0, 255, 1);
 
 		WritableRaster outRaster = outputRaster;
 
@@ -58,12 +62,14 @@ public class DbtEnhancementFilter extends Filter {
 
 				// create histograms of the RGB values
 				redNormHist.addValue(rgbValues[RED]);
-				redNormHist.addValue(rgbValues[GREEN]);
-				redNormHist.addValue(rgbValues[BLUE]);
+				gnh.addValue(rgbValues[GREEN]);
+				bnh.addValue(rgbValues[BLUE]);
 			}
 		}
 
-		//new ShowHistogram(redNormHist.getArray(), text);
+		new ShowHistogram(redNormHist.getArray(), text);
+		new ShowHistogram(gnh.getArray(), text);
+		new ShowHistogram(bnh.getArray(), text);
 	}
 
 	private WritableRaster contrastAdjustment(WritableRaster outputRaster) {

@@ -1,0 +1,23 @@
+SLIDE 1: Hello this is Dimitar Tasev, my user ID dbt and over the next few minutes I'm going to talk you through my CS241 assignment.
+
+SLIDE 2: The goal of the assignment was to take a BufferedImage, modifies the image in a some way and returns an enhanced image. This was all through the Beautify framework, which was given to us by Harry Strange. The modified image is meant to be an enhanced form of the input image. The algorithm to perform that enhancement had to be our own devising, and so what I'm going to do for the next few minutes is to talk you through the algorithm that I've developed, show you some results, and then have a brief critical reflection.
+
+SLIDE 3: So the basic idea behind my algorithm is to merge the effects of three different operations, each acting on a different area of the picture. In theory this should correct any contrast issues, any brightness issues, and remove noise artefacts, if such are available.
+
+SLIDE 4: The operations that make up my algorithm are
+SLIDE 5: Automatic Contrast Adjustment
+SLIDE 6: Luminosity Histogram Equalisation
+SLIDE 7: Average Value Blur Filter, and I'm going to go through each operation and how they affect the picture.
+
+SLIDE 8: First is the Automatic Contrast Adjustment. Here we can see three histograms, for each of the RGB channels, before and processing has been performed. 
+SLIDE 9: As we can see, the intensities inside the black rectangles are not being used nearly as much as the intensities outside of the rectangles. This indicates that the picture has poor contrast. The point of Automatic Contrast Adjustment is to fix that.
+SLIDE 10: We can see that after processing the range of used intensities is much larger than the original histograms.
+SLIDE 11: Here are the histograms side by side to easily see the difference. The post enhancement histograms are different than the original ones. The pixel occupy a wider range of intensities, which should improve the contrast in the picture. The operation is described in detail in the paper, but in short. 
+SLIDE 12: The goal is to remap the intensity values so that all possible ranges are used, 
+SLIDE 13: using the picture's Normal and Cumulative Histograms.
+SLIDE 14: The second operation is Luminosity Channel Histogram Equalisation. In order for this operation to be performed, we have to convert from RGB to LAB colour space. We can see from the histograms that dim or underexposed pictures tend to have the intensity values focused on the lower end of the possible values spectrum, and the bright (overexposed) pictures have the values focused on the higher end. Equalisation on the Luminosity tries to bring the values to what they should be if the picture was well exposed.
+SLIDE 15: This is what the Cumulative Histogram looks before and after being Equalised. From the Equalised Histogram we can now see that the Luminosity increases gradually, without any major leaps. This means that the distribution of the channel is now approximating linear. Which should fix any brightness or washed out looks issues.
+SLIDE 16: The final operation in the algorithm is the Average Value Blur filter. Its main purpose is to remove any noise in the picture, that might've been there or appeared after the initial two operations. You might be able to see the effect on the picture on the left, but since the picture is pretty small on the screen, the effect might not be visible. 
+SLIDE 17: Now I will go ahead and launch the Beautify app. The first image is already loaded in, what I'm going to do is just display each image, click the AutoBeautify and show the resulting image, and just do that for each of the five images
+SLIDE 18: In conclusion the algorithm works well when the picture isn't dominated by a single colour, causing the Contrast Adjustment to bring out unnatural colours. If the pictures are dim, or appear to be a bit washed out, the processing will fix that. The noise removal blur filter, sometimes can be stronger than desired, while other times it will just not be noticeable at all.
+SLIDE 19: If I had more time, I'd spend it finding a better, consistent blur filter, that will always produce the desired result

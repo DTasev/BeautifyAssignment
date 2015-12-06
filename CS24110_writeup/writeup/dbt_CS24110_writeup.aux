@@ -16,20 +16,24 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{introQuote}
+\citation{quoteImageEnhancement}
+\citation{labHistEqArticle}
 \citation{histDesc}
 \citation{histDescWiki}
+\citation{jFreeChart}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Methodology}{1}{section.2}}
 \newlabel{sec:methods}{{II}{1}{Methodology}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}High-level Overview}{1}{subsection.2.1}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Normal Histogram}}{1}{algorithm.1}}
 \newlabel{alg:norm_hist}{{1}{1}{High-level Overview}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Detailed Description}{1}{subsection.2.2}}
 \citation{automaticContrast}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces A flowchart of the proposed enhancement method. It shows the steps that will be performed in the automatic enhancement.}}{2}{figure.1}}
 \newlabel{fig:flowchart}{{1}{2}{A flowchart of the proposed enhancement method. It shows the steps that will be performed in the automatic enhancement}{figure.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces An image showing how the range of values will be set when applying contrast adjustment to the picture.}}{2}{figure.2}}
 \newlabel{fig:contrAdj}{{2}{2}{An image showing how the range of values will be set when applying contrast adjustment to the picture}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Detailed Description}{2}{subsection.2.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Two images showing a normal histogram and a cumulative histogram of it.}}{2}{figure.3}}
 \newlabel{fig:hist_comp}{{3}{2}{Two images showing a normal histogram and a cumulative histogram of it}{figure.3}{}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {original}}}{2}{figure.3}}
@@ -63,12 +67,10 @@
 \citation{xyzTOrgb}
 \@writefile{toc}{\contentsline {section}{\numberline {III}Results}{4}{section.3}}
 \newlabel{sec:results}{{III}{4}{Results}{section.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces The different shifts for each colour channel for each image. The larger the shift the greater the effect; the larger the difference in shifts between each colour channel the greater the colour changes will be.}}{4}{table.1}}
-\newlabel{tbl:shifts}{{I}{4}{The different shifts for each colour channel for each image. The larger the shift the greater the effect; the larger the difference in shifts between each colour channel the greater the colour changes will be}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Discussion \& Conclusions}{4}{section.4}}
 \newlabel{sec:discussion}{{IV}{4}{Discussion \& Conclusions}{section.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Results of performing the mean alignment algorithm on each of the five test images. For the first two images (a, c), the algorithm produces washed out results (b, d). Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h). The effect of the algorithm is least noticeable on Image 5 (i, j). Results of performing the described image enhancement algorithm on each of the five test images.}}{5}{figure.6}}
-\newlabel{fig:results}{{6}{5}{Results of performing the mean alignment algorithm on each of the five test images. For the first two images (a, c), the algorithm produces washed out results (b, d). Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h). The effect of the algorithm is least noticeable on Image 5 (i, j). Results of performing the described image enhancement algorithm on each of the five test images}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Results of performing the mean alignment algorithm on each of the five test images. For the first two images (a, c), the algorithm produces washed out results (b, d). Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h). The effect of the algorithm is least noticeable on Image 5 (i, j). Results of performing the described image enhancement algorithm on each of the five test images. The effect of the algorithm is noticeable in all of the images, they are all brighter and the blur is visible. For images (e, g) the images produced do not look natural (f, h). The algorithm's effect on image (a) has brought in colours in the sky that are not in the original picture (b). For images (c, i) the algorithm produced more natural-looking results. }}{5}{figure.6}}
+\newlabel{fig:results}{{6}{5}{Results of performing the mean alignment algorithm on each of the five test images. For the first two images (a, c), the algorithm produces washed out results (b, d). Performing the algorithm on Image 3 (e) causes a drastic change in colour (f), whereas the results for Image 4 (g) are far more natural (h). The effect of the algorithm is least noticeable on Image 5 (i, j). Results of performing the described image enhancement algorithm on each of the five test images. The effect of the algorithm is noticeable in all of the images, they are all brighter and the blur is visible. For images (e, g) the images produced do not look natural (f, h). The algorithm's effect on image (a) has brought in colours in the sky that are not in the original picture (b). For images (c, i) the algorithm produced more natural-looking results}{figure.6}{}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Image 1 Original}}}{5}{figure.6}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Image 1 Modified}}}{5}{figure.6}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Image 2 Original}}}{5}{figure.6}}
@@ -79,19 +81,26 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(h)}{\ignorespaces {Image 4 Modified}}}{5}{figure.6}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(i)}{\ignorespaces {Image 5 Original}}}{5}{figure.6}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(j)}{\ignorespaces {Image 5 Modified}}}{5}{figure.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Average RGB histograms from image 1 (Figure \ref  {fig:results} (a, b)). The unnatural colours occurs, because the original pixel intensity distribution is mostly focused in a particular range, surrounded by a black square, but after contrast adjustment the full range is used, bringing out unnatural colours.}}{5}{figure.7}}
+\newlabel{fig:image01_hists}{{7}{5}{Average RGB histograms from image 1 (Figure \ref {fig:results} (a, b)). The unnatural colours occurs, because the original pixel intensity distribution is mostly focused in a particular range, surrounded by a black square, but after contrast adjustment the full range is used, bringing out unnatural colours}{figure.7}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {original}}}{5}{figure.7}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {modified}}}{5}{figure.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Luminosity channel histograms of a low brightness picture (left) and high brightness picture (right).}}{5}{figure.8}}
+\newlabel{fig:luminDiffHist}{{8}{5}{Luminosity channel histograms of a low brightness picture (left) and high brightness picture (right)}{figure.8}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {low brightness}}}{5}{figure.8}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {high brightness}}}{5}{figure.8}}
 \bibstyle{IEEEtran}
 \bibdata{biblio}
-\bibcite{histDesc}{1}
-\bibcite{histDescWiki}{2}
-\bibcite{automaticContrast}{3}
-\bibcite{rgbTOxyz}{4}
-\bibcite{xyzTOlab}{5}
-\bibcite{averageFilter}{6}
-\bibcite{labTOxyz}{7}
-\bibcite{xyzTOrgb}{8}
-\bibcite{JavaWR}{9}
+\bibcite{introQuote}{1}
+\bibcite{quoteImageEnhancement}{2}
+\bibcite{labHistEqArticle}{3}
+\bibcite{histDesc}{4}
+\bibcite{histDescWiki}{5}
+\bibcite{jFreeChart}{6}
+\bibcite{automaticContrast}{7}
+\bibcite{rgbTOxyz}{8}
+\bibcite{xyzTOlab}{9}
+\bibcite{averageFilter}{10}
+\bibcite{labTOxyz}{11}
+\bibcite{xyzTOrgb}{12}
 \@writefile{toc}{\contentsline {section}{References}{6}{section*.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Average RGB histograms from image 1 (Figure \ref  {fig:results} (a, b)). The washed out effect seen in Figure \ref  {fig:results} (b) occurs because all of the pixels highlighted in the orange region are mapped to maximum intensity. Also note the range of unfilled intensities in the darker region of the modified image (green bar).}}{6}{figure.7}}
-\newlabel{fig:image01_hists}{{7}{6}{Average RGB histograms from image 1 (Figure \ref {fig:results} (a, b)). The washed out effect seen in Figure \ref {fig:results} (b) occurs because all of the pixels highlighted in the orange region are mapped to maximum intensity. Also note the range of unfilled intensities in the darker region of the modified image (green bar)}{figure.7}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {original}}}{6}{figure.7}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {modified}}}{6}{figure.7}}

@@ -1,15 +1,19 @@
-/*package uk.ac.aber.beautify.filters.kateGaussian;
+package uk.ac.aber.beautify.filters.kateGaussian;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * Created by Dimitar on 3/12/2015.
-
-@Deprecated
+ */
 public class kateGaussianFilter {
 
-    public kateGaussianFilter(){
+    public kateGaussianFilter() {
 
     }
-    public void gaussianFilter(BufferedImage image){
+
+    public WritableRaster gaussianFilter(BufferedImage image) {
         BufferedImage filteredImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
         WritableRaster outputRaster = filteredImage.getRaster();
         Raster inputRaster = image.getData();
@@ -46,7 +50,6 @@ public class kateGaussianFilter {
                 outputRaster.setPixel(u, v, outputPixels);
             }
         }
-
+        return outputRaster;
     }
 }
-*/

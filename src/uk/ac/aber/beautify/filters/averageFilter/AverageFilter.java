@@ -7,7 +7,9 @@ import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 
 /**
- * Created by Dimitar on 1/12/2015.
+ * DECLARATION:
+ *
+ * The code for this method was taken from Filter
  */
 public class AverageFilter {
     WritableRaster outputRaster;
