@@ -10,3 +10,6 @@ The code for the rest is implemented by me, following CS241's algorithms.
 Contacts:
 DTasev - dimtasev@gmail.com
 Harry Strange - hsg08@aber.ac.uk
+
+Marking Feedback:
+87% 
