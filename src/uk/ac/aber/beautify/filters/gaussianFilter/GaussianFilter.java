@@ -12,14 +12,14 @@ public class GaussianFilter {
     Raster inputRaster;
     BufferedImage img;
 
-    double[][] K = {{0.111, 0.111, 0.111},
+    /*double[][] K = {{0.111, 0.111, 0.111},
             {0.111, 0.111, 0.111},
             {0.111, 0.111, 0.111}};
-
-    /*double[][] K = {{-1.0, 0.0, 1.0},
+*/
+   /* double[][] K = {{-1.0, 0.0, 1.0},
             {-1.0, 0.0, 1.0},
-            {-1.0, 0.0, 1.0}};*/
-    /*double[][] K = {{1.0, 1.0, 1.0}, {0.0,0.0,0.0}, {-1.0, -1.0, -1.0}};*/
+            {-1.0, 0.0, 1.0}};
+  */ double[][] K = {{1.0, 1.0, 1.0}, {0.0,0.0,0.0}, {-1.0, -1.0, -1.0}};
     int filterWidth = (K.length - 1) / 2;
 
     public GaussianFilter(BufferedImage img) {

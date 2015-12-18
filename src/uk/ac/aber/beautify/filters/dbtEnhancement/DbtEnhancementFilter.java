@@ -40,7 +40,7 @@ public class DbtEnhancementFilter extends Filter {
 		outputRaster = labEqualisation(outputRaster);
 
 		// perform filtering function on image
-		outputRaster = new AverageFilter(outputImage, outputRaster).runRaster();
+		outputRaster = new GaussianFilter(outputImage, outputRaster).runRaster();
 
 		//calculateHistogram(outputRaster, "Post enhancement");
 		// set new image raster
