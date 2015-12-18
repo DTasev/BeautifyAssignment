@@ -1,4 +1,4 @@
-# beautify
+# Beautify Assignment
 CS241 Image Processing Assignment
 This is the submission for the IP Assignment.
 The Beautify Framework was provided to us by Harry Strange.
